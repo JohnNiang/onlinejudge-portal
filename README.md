@@ -49,8 +49,6 @@ npm run build --report
             "html"
         ]
     },
-    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-    "vetur.format.defaultFormatter.js": "vscode-typescript",
     "vetur.format.defaultFormatter.html": "js-beautify-html",
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Solarized Light",
