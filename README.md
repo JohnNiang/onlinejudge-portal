@@ -21,9 +21,41 @@ npm run build --report
 ## Dependencies
 
 > save
-- axios
-- vuex
+
+* axios
+* vuex
 
 > dev
-- node-sass
-- sass-loader
+
+* node-sass
+* sass-loader
+
+## VS Code Config
+
+```
+{
+    "emmet.syntaxProfiles": {
+        "vue-html": "html",
+        "vue": "html"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+        "vue"
+    ],
+    "eslint.options": {
+        "plugins": [
+            "html"
+        ]
+    },
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Solarized Light",
+    "extensions.ignoreRecommendations": false,
+    "prettier.singleQuote": true,
+    "prettier.semi": false
+}
+```
