@@ -1,3 +1,5 @@
-export const ADD_ACCESS_TOKEN = 'addAccessToken'
-export const ADD_REFRESH_TOKEN = 'addRefreshToken'
+export const SET_ACCESS_TOKEN = 'setAccessToken'
+export const SET_REFRESH_TOKEN = 'setRefreshToken'
+export const SET_TOKEN_TYPE = 'setTokenType'
+export const SET_USERNAME = 'setUsername'
 export const ERROR_OCCURRED = 'errorOccurred'

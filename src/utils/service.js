@@ -1,6 +1,6 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
-import * as type from '../mutation-type'
+import * as type from '../store/mutation-type'
 
 import store from '../store'
 
@@ -18,10 +18,12 @@ service.interceptors.request.use(
     const accessToken = store.getters.accessToken
     if (accessToken) {
       // if logined
+      console.log('config authentication header')
       config.headers['Authorization'] = `${store.getters.tokenType} ${
         store.getters.accessToken
       }`
-    } // there must not include `else` clause
+    }
+    // there must not include `else` clause
     NProgress.start()
     return config
   },
@@ -38,18 +40,22 @@ service.interceptors.request.use(
  */
 service.interceptors.response.use(
   response => {
+    // clear global error
+    console.log('clear error')
+    store.commit(type.ERROR_OCCURRED, null)
     NProgress.done()
     return response
   },
   error => {
     NProgress.done()
+    // clear global error
+    console.log('clear error')
+    store.commit(type.ERROR_OCCURRED, null)
     console.error('axios resposne error', error.message)
-    if (!error.status) {
-      store.commit(type.ERROR_OCCURRED, 'Network weakness')
-      return null
-    }
+    console.error('axios error response', error.response)
     const response = error.response
     const status = response ? response.status : -1
+    console.error('axios error response status', status)
     if (status === 401) {
       // unauthorization
       store.commit(type.ERROR_OCCURRED, 'Please sign in firstly!')
@@ -60,7 +66,7 @@ service.interceptors.response.use(
     if (status === -1) {
       return null
     }
-    return error.response
+    return response
   }
 )
 

@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+// import the ngrogress css
+import 'nprogress/nprogress.css' // Progress 进度条样式
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
