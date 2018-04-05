@@ -1,15 +1,25 @@
 <template>
   <div id="app">
+    <my-header></my-header>
     <div class="global_error" v-show="globalError">
       <span>{{globalError}}</span>
     </div>
-    <router-view/>
+    <router-view>
+    </router-view>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import MyHeader from '@/views/header/Header'
+import MyFooter from '@/views/footer/Footer'
+
 export default {
+  components: {
+    MyHeader,
+    MyFooter
+  },
   name: 'App',
   computed: {
     ...mapGetters(['globalError'])

@@ -8,6 +8,9 @@ import store from './store'
 // import the ngrogress css
 import 'nprogress/nprogress.css' // Progress 进度条样式
 
+// import semantic-ui css
+import '../semantic/dist/semantic.min.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
