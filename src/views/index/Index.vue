@@ -1,7 +1,7 @@
 <template>
-  <main>
-    <h3>Index</h3>
-  </main>
+  <el-row>
+    <el-col :span="16">Index</el-col>
+  </el-row>
 </template>
 
 <script>

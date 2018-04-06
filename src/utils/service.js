@@ -57,6 +57,14 @@ service.interceptors.response.use(
     const status = response ? response.status : -1
     console.error('axios error response status', status)
     if (status === 401) {
+      // refresh token first
+      if (
+        store.getters.refreshToken &&
+        response.data.error === 'invalid_token'
+      ) {
+        // use refresh token to get an access token
+        store.dispatch('refresh', { refreshToken: store.getters.refreshToken })
+      }
       // unauthorization
       store.commit(type.ERROR_OCCURRED, 'Please sign in firstly!')
     } else if (status === 403) {

@@ -1,11 +1,20 @@
 @import './base/reset';
 @import './base/mixin';
+@import './base/variable';
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  // text-align: center;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $black-color;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+  &:hover {
+    color: $link-hover-color;
+    cursor: pointer;
+  }
 }

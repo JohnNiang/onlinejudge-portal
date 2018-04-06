@@ -13,3 +13,19 @@
     @content;
   }
 }
+
+@mixin displayFlex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexOrder($number) {
+  -webkit-box-ordinal-group: $number;
+  -moz-box-ordinal-group: $number;
+  -ms-flex-order: $number;
+  -webkit-order: $number;
+  order: $number;
+}

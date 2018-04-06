@@ -1,45 +1,78 @@
 <template>
-  <div>
-    Header
-  </div>
-  <!-- <div>
-    <header>
+  <div class="header_wrapper">
+    <div class="header">
       <h1>CJ OJ</h1>
-      <h2>CQJTU Online Judge</h2>
-    </header>
+      <h2>cqjtu online judge</h2>
+    </div>
     <nav>
       <ul>
         <li>
-          <a href="#">主页</a>
+          <a href="#">
+            <router-link tag="a" to="/home">Home</router-link>
+          </a>
         </li>
         <li>
-          <a href="#">题目</a>
+          <a href="#">
+            <router-link tag="a" to="/problems">Problem</router-link>
+          </a>
         </li>
         <li>
-          <a href="#">竞赛</a>
+          <a href="#">
+            <router-link tag="a" to="/contests">Contest</router-link>
+          </a>
         </li>
         <li>
-          <a href="#">排行</a>
+          <a href="#">
+            <router-link tag="a" to="/ranklists">Ranklist</router-link>
+          </a>
         </li>
         <li>
-          <a href="#">关于</a>
+          <a href="#">
+            <router-link tag="a" to="/about">About</router-link>
+          </a>
         </li>
       </ul>
     </nav>
-  </div> -->
-
+  </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      drawer: null
-    }
+    return {}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+@import '../../styles/base/mixin';
+.header_wrapper {
+  .header {
+    text-align: center;
+    padding: 20px;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+    h2 {
+      margin-top: 0;
+    }
+  }
+  nav {
+    margin-bottom: 20px;
+    ul {
+      @include clearfix;
+      @include displayFlex;
+      justify-content: center;
+      list-style: none;
+      a {
+        padding: 20px;
+        .router-link-active {
+          background: #aaaaaa;
+        }
+      }
+    }
+  }
+}
 </style>

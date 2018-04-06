@@ -1,7 +1,10 @@
 <template>
   <div>
+    <error-alert></error-alert>
     <my-header></my-header>
-    <router-view></router-view>
+    <el-main class="clearfix">
+      <router-view></router-view>
+    </el-main>
     <my-footer></my-footer>
   </div>
 </template>
@@ -9,11 +12,13 @@
 <script>
 import MyHeader from '@/views/header/Header'
 import MyFooter from '@/views/footer/Footer'
+import ErrorAlert from '@/views/error/ErrorAlert'
 
 export default {
   components: {
     MyHeader,
-    MyFooter
+    MyFooter,
+    ErrorAlert
   },
   name: 'App'
 }
@@ -21,4 +26,8 @@ export default {
 
 <style lang="scss">
 @import './styles/main';
+
+.el-main {
+  min-height: 300px;
+}
 </style>

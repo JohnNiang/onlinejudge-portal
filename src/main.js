@@ -6,8 +6,11 @@ import router from './router'
 import store from './store'
 import Element from 'element-ui'
 
-// import the ngrogotherwise import them into your projectress css
+// import the ngrogress
 import 'nprogress/nprogress.css' // Progress 进度条样式
+
+// import element ui styles
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
