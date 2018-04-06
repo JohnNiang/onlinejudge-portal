@@ -1,0 +1,15 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+@mixin mq($display, $breakpoint) {
+  @media #{$display} and #{$breakpoint} {
+    @content;
+  }
+}

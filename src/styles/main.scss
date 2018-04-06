@@ -1,0 +1,11 @@
+@import './base/reset';
+@import './base/mixin';
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  // text-align: center;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}

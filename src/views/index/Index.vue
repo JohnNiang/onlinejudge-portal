@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Index
-  </div>
+  <main>
+    <h3>Index</h3>
+  </main>
 </template>
 
 <script>
