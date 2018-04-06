@@ -1,11 +1,9 @@
 <template>
-  <v-app id="app">
+  <div>
     <my-header></my-header>
-    <v-content>
-      <router-view> </router-view>
-    </v-content>
+    <router-view></router-view>
     <my-footer></my-footer>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -22,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import './styles/main';
+@import './styles/main';
 </style>
