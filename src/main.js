@@ -4,11 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import Vuetify from 'vuetify'
 
 // import the ngrogress css
 import 'nprogress/nprogress.css' // Progress 进度条样式
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false
+Vue.use(Vuetify)
+
+// import vuetify css
 
 /* eslint-disable no-new */
 new Vue({
