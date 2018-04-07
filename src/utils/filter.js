@@ -27,6 +27,6 @@ export function toPercentage(lower, higher) {
   return parseInt((lower / higher * 100).toFixed(0))
 }
 
-export function toThousandsFilter(num) {
+export function toThousands(num) {
   return (+num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
 }

@@ -8,8 +8,8 @@
       </div>
       <div class="item">
         <span>id: {{problem.problemId}}</span>
-        <span>time limit: {{problem.timeLimit | toThousandsFilter}} ms </span>
-        <span>memory limit: {{problem.memoryLimit | toThousandsFilter}} KB</span>
+        <span>time limit: {{problem.timeLimit | toThousands}} ms </span>
+        <span>memory limit: {{problem.memoryLimit | toThousands}} KB</span>
         <span class="time">created: {{problem.createTime | timeAgo}}</span>
         <span class="time">updated: {{problem.updateTime | timeAgo}}</span>
         <el-progress :percentage="problem.passRate"></el-progress>

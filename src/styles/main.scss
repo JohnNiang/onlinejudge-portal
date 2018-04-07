@@ -29,3 +29,7 @@ a {
 .shadow {
   @include normalBoxShadow;
 }
+
+hr {
+  border: .7px solid $hr-color;
+}
