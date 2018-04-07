@@ -20,3 +20,10 @@ export function getProblem(id) {
     method: 'get'
   })
 }
+
+export function getProblemLanguages(id) {
+  return service({
+    url: `${baseUrl}/${id}/languages`,
+    method: 'get'
+  })
+}
