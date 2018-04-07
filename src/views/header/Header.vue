@@ -1,10 +1,10 @@
 <template>
   <div class="header_wrapper">
     <div class="header">
-      <h1>CJ OJ</h1>
+      <h1>Yun OJ</h1>
       <h2>cqjtu online judge</h2>
     </div>
-    <nav>
+    <nav class="shadow">
       <ul>
         <li>
           <a href="#">
@@ -46,12 +46,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../styles/base/mixin';
+@import '../../styles/base/variable';
 .header_wrapper {
   .header {
     text-align: center;
     padding: 20px;
+    background: $header-background-color;
     h1 {
-      font-size: 3rem;
+      color: $header-color;
+      font-size: 4rem;
       margin-bottom: 0;
       margin-top: 20px;
     }
@@ -60,7 +63,9 @@ export default {
     }
   }
   nav {
+    background: $black-color;
     margin-bottom: 20px;
+    padding: 10px;
     ul {
       @include clearfix;
       @include displayFlex;
@@ -68,8 +73,10 @@ export default {
       list-style: none;
       a {
         padding: 20px;
+        color: $white-color;
         .router-link-active {
-          background: #aaaaaa;
+          background: $nav-active-color;
+          border-radius: 2px;
         }
       }
     }

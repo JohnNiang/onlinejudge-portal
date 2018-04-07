@@ -29,5 +29,8 @@ export default {
 
 .el-main {
   min-height: 300px;
+  padding: 0 10%;
+  // margin-bottom: 20px;
+  background: #f5f7f9;
 }
 </style>

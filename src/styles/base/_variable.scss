@@ -2,6 +2,11 @@ $black-color: #3d3e3f;
 $white-color: #ffffff;
 $link-color: #2d2d2d;
 $link-hover-color: #757272;
+$header-background-color: $white-color;
+$header-color: $black-color;
+$nav-active-color: #439fff;
+$footer-color: #757272;
+$footer-background-color: $black-color;
 
 $mq_small_only: '(max-width: 640px)';
 $mq_medium_only: '(min-width: 641px) and (max-width: 1024px)';

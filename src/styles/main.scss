@@ -18,3 +18,14 @@ a {
     cursor: pointer;
   }
 }
+
+.content_wrapper {
+  text-align: center;
+  background: $white-color;
+  padding: 10px;
+  @include normalBoxShadow;
+}
+
+.shadow {
+  @include normalBoxShadow;
+}

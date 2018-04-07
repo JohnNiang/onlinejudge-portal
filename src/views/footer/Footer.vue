@@ -1,7 +1,8 @@
 <template>
-  <el-footer>
-    <span> &copy; cqjtu cs 1404 designed by johnniang</span>
-  </el-footer>
+  <footer>
+    <span> &copy; cqjtu cs 1404</span>
+    <span>designed by johnniang</span>
+  </footer>
 </template>
 
 <script>
@@ -10,13 +11,19 @@ export default {}
 
 <style lang="scss" scoped>
 @import '../../styles/base/mixin';
-.el-footer {
-  @include displayFlex();
-  background: #cecece;
-  justify-content: center;
+@import '../../styles/base/variable';
+footer {
+  // @include displayFlex();
+  background: $footer-background-color;
+  // justify-content: center;
+  text-align: center;
+  padding: 20px 0;
   span {
-    display: block;
-    margin: auto 0;
+    position: relative;
+    color: $footer-color;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
   }
 }
 </style>
