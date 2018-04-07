@@ -9,12 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Index
-    },
-    {
-      path: 'home',
+      path: '/home',
       name: 'Index',
       component: Index
     },

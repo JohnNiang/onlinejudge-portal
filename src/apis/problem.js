@@ -4,7 +4,7 @@ const baseUrl = '/api/v1/problems'
 
 export function getProblems(page, rpp, sort) {
   return service({
-    url: `${baseUrl}/status/released`,
+    url: `${baseUrl}`,
     params: {
       page: page,
       rpp: rpp,

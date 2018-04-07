@@ -2,28 +2,59 @@
   <div class="problem_wrapper">
     <el-card class="box-card" v-for="problem in problems" :key="problem.problemId">
       <div slot="header" class="clearfix">
-        <span>{{problem.title}}</span>
+        <span>
+          <i class="el-icon-caret-right"></i>{{problem.title}}</span>
         <el-button type="text">More</el-button>
       </div>
+      <div class="item">
+        {{problem}} {{Date.now() | timeAgo}}
+      </div>
     </el-card>
+    <el-pagination layout="prev, pager, next" :current-page="pagination.page" :page-size="pagination.rpp" :total="pagination.total" @current-change="currentPageChange">
+    </el-pagination>
   </div>
 </template>
 
 <script>
 import * as problemApi from '@/apis/problem'
+// import * as dateUtil from '@/utils/date'
 
 export default {
   data() {
     return {
-      problems: []
+      problems: [],
+      pagination: {
+        total: 0,
+        page: 1,
+        rpp: 9,
+        sort: ''
+      }
     }
   },
   mounted() {
-    problemApi.getProblems().then(response => {
-      if (response && response.status === 200) {
-        this.problems = response.data.datas
-      }
-    })
+    this.getProblems()
+  },
+  methods: {
+    getProblems() {
+      problemApi
+        .getProblems(
+          this.pagination.page,
+          this.pagination.rpp,
+          this.pagination.sort
+        )
+        .then(response => {
+          if (response && response.status === 200) {
+            this.problems = response.data.datas
+            this.pagination.total = response.data.total
+            this.pagination.page = response.data.page
+            this.pagination.rpp = response.data.rpp
+          }
+        })
+    },
+    currentPageChange(currentPage) {
+      this.pagination.page = currentPage
+      this.getProblems()
+    }
   }
 }
 </script>

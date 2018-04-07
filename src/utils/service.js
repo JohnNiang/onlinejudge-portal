@@ -72,6 +72,7 @@ service.interceptors.response.use(
       store.commit(type.ERROR_OCCURRED, 'Forbiddon to access the resource')
     }
     if (status === -1) {
+      store.commit(type.ERROR_OCCURRED, 'Unknown error occurred')
       return null
     }
     return response
