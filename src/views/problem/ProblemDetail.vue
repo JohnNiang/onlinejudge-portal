@@ -54,7 +54,7 @@ export default {
     }
   },
   props: {
-    id: {
+    problemId: {
       type: [Number, String],
       required: true
     }
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     getProblem() {
-      problemApi.getProblem(this.id).then(response => {
+      problemApi.getProblem(this.problemId).then(response => {
         if (response && response.status === 200) {
           this.problem = response.data
           // retrive problem language
@@ -73,7 +73,7 @@ export default {
       })
     },
     getProblemLanguages() {
-      problemApi.getProblemLanguages(this.id).then(response => {
+      problemApi.getProblemLanguages(this.problemId).then(response => {
         if (response && response.status === 200) {
           this.problemLanguages = response.data
         }
@@ -84,8 +84,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.problem_wrapper {
+  text-align: center;
+}
 .time {
   margin-right: 10px;
+}
+
+.description {
+  text-align: left;
 }
 
 .limit {

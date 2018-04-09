@@ -2,9 +2,9 @@
   <div>
     <error-alert></error-alert>
     <my-header></my-header>
-    <el-main class="clearfix">
+    <main class="clearfix">
       <router-view></router-view>
-    </el-main>
+    </main>
     <my-footer></my-footer>
   </div>
 </template>
@@ -27,10 +27,8 @@ export default {
 <style lang="scss">
 @import './styles/main';
 
-.el-main {
-  min-height: 300px;
+main {
   padding: 0 10%;
-  // margin-bottom: 20px;
   background: #f5f7f9;
 }
 </style>

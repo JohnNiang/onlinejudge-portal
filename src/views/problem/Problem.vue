@@ -1,5 +1,5 @@
 <template>
-  <div class="content_wrapper">
+  <div class="content_wrapper problems_wrapper">
     <el-card class="box-card" shadow="hover" v-for="problem in formattedProblems" :key="problem.problemId">
       <div slot="header" class="clearfix">
         <span>
@@ -73,13 +73,16 @@ export default {
       this.getProblems()
     },
     readMore(id) {
-      this.$router.push({ name: 'problem_detail', params: { id: id } })
+      this.$router.push({ name: 'problem_detail', params: { problemId: id } })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.problems_wrapper {
+  text-align: center;
+}
 .item {
   span {
     display: block;
@@ -118,6 +121,7 @@ export default {
     clear: both;
   }
 }
+
 .el-button {
   float: right;
   padding: 3px 0;

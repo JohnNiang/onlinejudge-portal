@@ -6,6 +6,9 @@ const Problem = resolve => require(['@/views/problem/Problem'], resolve)
 const ProblemDetail = resolve =>
   require(['@/views/problem/ProblemDetail'], resolve)
 const About = resolve => require(['@/views/about/About'], resolve)
+const Contest = resolve => require(['@/views/contest/Contest'], resolve)
+const ContestDetail = resolve =>
+  require(['@/views/contest/ContestDetail'], resolve)
 
 Vue.use(Router)
 
@@ -22,7 +25,7 @@ export default new Router({
       component: Problem
     },
     {
-      path: '/problems/:id',
+      path: '/problems/:problemId',
       name: 'problem_detail',
       component: ProblemDetail,
       props: true
@@ -31,6 +34,17 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/contests',
+      name: 'contest',
+      component: Contest
+    },
+    {
+      path: '/contests/:contestId',
+      name: 'contest_detail',
+      component: ContestDetail,
+      props: true
     }
   ]
 })

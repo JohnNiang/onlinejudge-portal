@@ -1,7 +1,7 @@
 <template>
   <div class="header_wrapper">
     <div class="header">
-      <h1>Yun OJ</h1>
+      <h1>Chang OJ</h1>
       <h2>cqjtu online judge</h2>
     </div>
     <nav class="shadow">
@@ -77,6 +77,7 @@ export default {
         .router-link-active {
           background: $nav-active-color;
           border-radius: 2px;
+          @include removeOutline;
         }
       }
     }

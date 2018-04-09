@@ -17,13 +17,14 @@ a {
     color: $link-hover-color;
     cursor: pointer;
   }
+  &:focus {
+    @include removeOutline;
+  }
 }
 
 .content_wrapper {
-  text-align: center;
   background: $white-color;
-  padding: 10px;
-  @include normalBoxShadow;
+  // @include normalBoxShadow;
 }
 
 .shadow {
@@ -31,5 +32,5 @@ a {
 }
 
 hr {
-  border: .7px solid $hr-color;
+  border: 0.7px solid $hr-color;
 }
