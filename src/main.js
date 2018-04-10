@@ -15,7 +15,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
-Vue.use(Element, { size: 'small' })
+Vue.use(Element, { size: 'middle' })
 
 // import filter
 Object.keys(filter).forEach(key => {
