@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.3.3",
+    "mustard-ui": "0.0.7",
     "nprogress": "^0.2.0",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",

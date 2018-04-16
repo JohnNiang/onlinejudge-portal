@@ -1,34 +1,20 @@
 <template>
-  <div>
-    <error-alert></error-alert>
-    <my-header></my-header>
-    <main class="clearfix">
-      <router-view></router-view>
-    </main>
-    <my-footer></my-footer>
+  <div id="app">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MyHeader from '@/views/header/Header'
-import MyFooter from '@/views/footer/Footer'
-import ErrorAlert from '@/views/error/ErrorAlert'
-
 export default {
-  components: {
-    MyHeader,
-    MyFooter,
-    ErrorAlert
-  },
   name: 'App'
 }
 </script>
 
 <style lang="scss">
-@import './styles/main';
-
-main {
-  padding: 0 10%;
-  background: #f5f7f9;
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

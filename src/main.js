@@ -11,7 +11,8 @@ import * as filter from './utils/filter'
 import 'nprogress/nprogress.css' // Progress 进度条样式
 
 // import element ui styles
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
+import 'mustard-ui/dist/css/mustard-ui.min.css'
 
 Vue.config.productionTip = false
 

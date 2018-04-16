@@ -1,6 +1,7 @@
 <template>
-  <el-alert v-if="globalError" :title="globalError" type="error" show-icon>
-  </el-alert>
+  <div class="container" v-if="globalError">
+    <p class="alert alert-danger">{{globalError}}</p>
+  </div>
 </template>
 
 <script>
@@ -13,4 +14,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

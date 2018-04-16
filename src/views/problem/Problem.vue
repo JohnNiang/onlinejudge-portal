@@ -1,30 +1,51 @@
 <template>
-  <div class="content_wrapper problems_wrapper">
-    <el-card class="box-card" shadow="hover" v-for="problem in formattedProblems" :key="problem.problemId">
-      <div slot="header" class="clearfix">
-        <span>
-          <i class="el-icon-document title_icon"></i>{{problem.title}}</span>
-        <el-button type="text" @click="readMore(problem.problemId)">More</el-button>
+  <div>
+    <section class="section-tertiary">
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Updated</th>
+              <th>Ratio</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="problem in formattedProblems" :key="problem.problemId">
+              <td>{{problem.problemId}}</td>
+              <td>{{problem.title}}</td>
+              <td>{{problem.updateTime | timeAgo}}</td>
+              <td>
+                <progress-bar :percentage="problem.passRate"></progress-bar>
+              </td>
+              <td>
+                <button class="button-primary-text" @click="readMore(problem.problemId)">More</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <my-pagination></my-pagination>
       </div>
-      <div class="item">
-        <span>id: {{problem.problemId}}</span>
-        <span>time limit: {{problem.timeLimit | toThousands}} ms </span>
-        <span>memory limit: {{problem.memoryLimit | toThousands}} KB</span>
-        <span class="time">created: {{problem.createTime | timeAgo}}</span>
-        <span class="time">updated: {{problem.updateTime | timeAgo}}</span>
-        <el-progress :percentage="problem.passRate"></el-progress>
-      </div>
-    </el-card>
-    <el-pagination layout="prev, pager, next" :current-page="pagination.page" :page-size="pagination.rpp" :total="pagination.total" @current-change="currentPageChange">
-    </el-pagination>
+    </section>
+    <!-- <el-pagination layout="prev, pager, next" :current-page="pagination.page" :page-size="pagination.rpp" :total="pagination.total" @current-change="currentPageChange">
+    </el-pagination> -->
   </div>
 </template>
 
 <script>
+import MyPagination from '@/components/pagination/MyPagination'
+import ProgressBar from '@/components/progress-bar/ProgressBar'
+
 import * as problemApi from '@/apis/problem'
 import * as filterUtil from '@/utils/filter'
 
 export default {
+  components: {
+    MyPagination,
+    ProgressBar
+  },
   data() {
     return {
       problems: [],
@@ -80,50 +101,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.problems_wrapper {
-  text-align: center;
-}
-.item {
-  span {
-    display: block;
-    color: #999;
-    margin-bottom: 10px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-.title_icon {
-  margin-right: 5px;
-}
-.time {
-  font-size: 13px;
-  &:after {
-    content: ' ago';
-  }
-}
-.box-card {
-  width: 25%;
-  margin: 10px;
-  text-align-last: left;
-  display: inline-table;
-  span {
-    margin-right: 5px;
-  }
-}
-.clearfix {
-  &:before,
-  &:after {
-    display: table;
-    content: '';
-  }
-  &:after {
-    clear: both;
-  }
-}
 
-.el-button {
-  float: right;
-  padding: 3px 0;
-}
 </style>

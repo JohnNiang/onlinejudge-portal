@@ -1,36 +1,43 @@
 <template>
-  <div class="contests_wrapper">
-    <ul class="responsive-table">
-      <li class="table-header">
-        <div class="col col-1">#</div>
-        <div class="col col-2">title</div>
-        <div class="col col-3">type</div>
-        <div class="col col-4">started</div>
-        <div class="col col-5">ended</div>
-        <div class="col col-6">created</div>
-        <div class="col col-7">updated</div>
-        <div class="col col-8">status</div>
-      </li>
-      <li class="table-row" v-for="contest in contests" :key="contest.contestId" @click="readMore(contest.contestId)">
-        <div class="col col-1" data-label="#">{{contest.contestId}}</div>
-        <div class="col col-2" data-label="title">{{contest.title}}</div>
-        <div class="col col-3" data-label="type">{{contest.type}}</div>
-        <div class="col col-4" data-label="started">{{contest.startTime | parseTime}}</div>
-        <div class="col col-5" data-label="ended">{{contest.endTime | parseTime}}</div>
-        <div class="col col-6" data-label="created">{{contest.createTime | timeAgo}}</div>
-        <div class="col col-7" data-label="updated">{{contest.updateTime | timeAgo}}</div>
-        <div class="col col-8" data-label="status">{{contest.status}}</div>
-      </li>
-    </ul>
-    <el-pagination layout="prev, pager, next" :current-page="pagination.page" :page-size="pagination.rpp" :total="pagination.total" @current-change="currentPageChange">
-    </el-pagination>
+  <div>
+    <section class="section-tertiary">
+      <div class="container">
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">#</div>
+            <div class="col col-2">title</div>
+            <div class="col col-3">type</div>
+            <div class="col col-4">started</div>
+            <div class="col col-5">ended</div>
+            <div class="col col-6">created</div>
+            <div class="col col-7">updated</div>
+            <div class="col col-8">status</div>
+          </li>
+          <li class="table-row" v-for="contest in contests" :key="contest.contestId" @click="readMore(contest.contestId)">
+            <div class="col col-1" data-label="#">{{contest.contestId}}</div>
+            <div class="col col-2" data-label="title">{{contest.title}}</div>
+            <div class="col col-3" data-label="type">{{contest.type}}</div>
+            <div class="col col-4" data-label="started">{{contest.startTime | parseTime}}</div>
+            <div class="col col-5" data-label="ended">{{contest.endTime | parseTime}}</div>
+            <div class="col col-6" data-label="created">{{contest.createTime | timeAgo}}</div>
+            <div class="col col-7" data-label="updated">{{contest.updateTime | timeAgo}}</div>
+            <div class="col col-8" data-label="status">{{contest.status}}</div>
+          </li>
+        </ul>
+        <my-pagination></my-pagination>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import MyPagination from '@/components/pagination/MyPagination'
 import * as contestApi from '@/apis/contest'
 
 export default {
+  components: {
+    MyPagination
+  },
   data() {
     return {
       pagination: {
