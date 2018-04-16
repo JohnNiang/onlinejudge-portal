@@ -1,21 +1,25 @@
 <template>
   <div class="content_wrapper">
-    <div class="problem_wrapper" v-if="problem">
-      <h1>{{problem.title}}</h1>
-      <hr>
-      <span class="time">created: {{problem.createTime | timeAgo}}</span>
-      <span class="time">updated: {{problem.updateTime | timeAgo}}</span>
-      <hr>
-      <span class="limit">time: {{problem.timeLimit | toThousands}} ms</span>
-      <span class="limit">memory: {{problem.memoryLimit | toThousands}} kb</span>
-      <hr>
-      <div class="description" v-html="problem.description"></div>
-      <hr>
-      <div class="codemirror">
-        <codemirror v-model="code" :options="cmOptions"></codemirror>
+    <section class="section-tertiary">
+      <div class="container">
+        <div class="problem_wrapper" v-if="problem">
+          <h1>{{problem.title}}</h1>
+          <hr>
+          <span class="time">created: {{problem.createTime | timeAgo}}</span>
+          <span class="time">updated: {{problem.updateTime | timeAgo}}</span>
+          <hr>
+          <span class="limit">time: {{problem.timeLimit | toThousands}} ms</span>
+          <span class="limit">memory: {{problem.memoryLimit | toThousands}} kb</span>
+          <hr>
+          <div class="description" v-html="problem.description"></div>
+          <hr>
+          <div class="codemirror">
+            <codemirror v-model="code" :options="cmOptions"></codemirror>
+          </div>
+          <button class="button-primary button-round button-shadow button-long">Submit</button>
+        </div>
       </div>
-      <el-button type="success">Submit</el-button>
-    </div>
+    </section>
   </div>
 </template>
 

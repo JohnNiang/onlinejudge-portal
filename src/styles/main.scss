@@ -1,37 +1,13 @@
-@import './base/reset';
 @import './base/mixin';
 @import './base/variable';
 
 body {
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $black-color;
 }
 
-a {
-  text-decoration: none;
-  color: $link-color;
-  &:hover {
-    color: $link-hover-color;
-    cursor: pointer;
-  }
-  &:focus {
-    @include removeOutline;
-  }
-}
-
-.content_wrapper {
-  background: $white-color;
-  // @include normalBoxShadow;
-}
-
-.shadow {
-  @include normalBoxShadow;
-}
-
-hr {
-  border: 0.7px solid $hr-color;
+.button-long {
+  width: 100%;
 }
