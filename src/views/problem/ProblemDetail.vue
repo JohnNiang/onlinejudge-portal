@@ -4,19 +4,24 @@
       <div class="container">
         <div class="problem_wrapper" v-if="problem">
           <h1>{{problem.title}}</h1>
-          <hr>
-          <span class="time">created: {{problem.createTime | timeAgo}}</span>
-          <span class="time">updated: {{problem.updateTime | timeAgo}}</span>
-          <hr>
-          <span class="limit">time: {{problem.timeLimit | toThousands}} ms</span>
-          <span class="limit">memory: {{problem.memoryLimit | toThousands}} kb</span>
-          <hr>
+          <span class="time">
+            <font-awesome-icon :icon="['fas', 'clock']"></font-awesome-icon>{{problem.updateTime | timeAgo}} ago
+          </span>
+          <div class="limit">
+            <span>
+              <font-awesome-icon :icon="['fas', 'stopwatch']"></font-awesome-icon> {{problem.timeLimit | toThousands}} ms
+            </span>
+            <span>
+              <font-awesome-icon :icon="['fas', 'hdd']"></font-awesome-icon>{{problem.memoryLimit | toThousands}} KB
+            </span>
+          </div>
           <div class="description" v-html="problem.description"></div>
-          <hr>
           <div class="codemirror">
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
-          <button class="button-primary button-round button-shadow button-long">Submit</button>
+          <button class="button-primary button-round button-shadow button-long">
+            <font-awesome-icon :icon="['fas', 'upload']" /> Submit
+          </button>
         </div>
       </div>
     </section>
@@ -93,6 +98,8 @@ export default {
 }
 .time {
   margin-right: 10px;
+  color: grey;
+  font-size: 12px;
 }
 
 .description {
@@ -100,7 +107,10 @@ export default {
 }
 
 .limit {
-  margin-right: 10px;
+  text-align: right;
+  span {
+    margin-right: 10px;
+  }
 }
 .codemirror {
   text-align-last: left;
