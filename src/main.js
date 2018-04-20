@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import Element from 'element-ui'
+// import Element from 'element-ui'
 import * as filter from './utils/filter'
 
 // import the ngrogress
@@ -16,7 +16,7 @@ import 'mustard-ui/dist/css/mustard-ui.min.css'
 
 Vue.config.productionTip = false
 
-Vue.use(Element, { size: 'middle' })
+// Vue.use(Element, { size: 'middle' })
 
 // import filter
 Object.keys(filter).forEach(key => {
