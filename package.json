@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
     "axios": "^0.18.0",
     "element-ui": "^2.3.3",
     "mustard-ui": "0.0.7",
