@@ -27,3 +27,13 @@ export function getProblemLanguages(id) {
     method: 'get'
   })
 }
+
+export function postSubmission(problemId, languageId, code) {
+  return service({
+    url: `${baseUrl}/${problemId}/submissions/languages/${languageId}`,
+    data: {
+      code: code
+    },
+    method: 'post'
+  })
+}
