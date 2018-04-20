@@ -4,19 +4,25 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-// import Element from 'element-ui'
 import * as filter from './utils/filter'
+
+// import font awesome
+import fontawesome from '@fortawesome/fontawesome'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import solid from '@fortawesome/fontawesome-free-solid'
 
 // import the ngrogress
 import 'nprogress/nprogress.css' // Progress 进度条样式
 
-// import element ui styles
-// import 'element-ui/lib/theme-chalk/index.css'
 import 'mustard-ui/dist/css/mustard-ui.min.css'
+
+// add fontawesome library
+fontawesome.library.add(solid)
 
 Vue.config.productionTip = false
 
-// Vue.use(Element, { size: 'middle' })
+// use the font awesome
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // import filter
 Object.keys(filter).forEach(key => {

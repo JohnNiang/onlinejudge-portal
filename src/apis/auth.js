@@ -4,7 +4,9 @@ const baseUrl = '/oauth/token'
 const clientId = 'onlinejudge'
 const clientSecret = 'openonlinejudge'
 
-export function login(username, password) {
+const authApi = {}
+
+authApi.login = (username, password) => {
   return service({
     url: baseUrl,
     params: {
@@ -18,7 +20,7 @@ export function login(username, password) {
   })
 }
 
-export function refreshToken(refreshToken) {
+authApi.refreshToken = refreshToken => {
   return service({
     url: baseUrl,
     params: {
@@ -30,3 +32,5 @@ export function refreshToken(refreshToken) {
     method: 'get'
   })
 }
+
+export default authApi

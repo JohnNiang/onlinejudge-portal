@@ -1,28 +1,27 @@
 import * as type from '../mutation-type'
-import * as auth from '../../apis/auth'
+import authApi from '../../apis/auth'
+import store from '..'
+
+const AUTH_RESULT = 'authResult'
 
 const state = {
-  accessToken: localStorage.getItem('accessToken')
-    ? localStorage.getItem('accessToken')
-    : null,
-  tokenType: localStorage.getItem('tokenType')
-    ? localStorage.getItem('tokenType')
-    : null,
-  refreshToken: localStorage.getItem('refreshToken')
-    ? localStorage.getItem('refreshToken')
-    : null,
-  username: localStorage.getItem('username')
-    ? localStorage.getItem('username')
-    : null,
+  authResult: JSON.parse(localStorage.getItem(AUTH_RESULT)),
   globalError: undefined
 }
 
 const getters = {
-  accessToken: state => state.accessToken,
-  tokenType: state => state.tokenType,
-  refreshToken: state => state.refreshToken,
-  username: state => state.username,
-  globalError: state => state.globalError
+  accessToken: state =>
+    state.authResult ? state.authResult.access_token : null,
+  tokenType: state => (state.authResult ? state.authResult.token_type : null),
+  refreshToken: state =>
+    state.authResult ? state.authResult.refresh_token : null,
+  username: state => (state.authResult ? state.authResult.username : null),
+  globalError: state => state.globalError,
+  isLogined: state =>
+    state.authResult &&
+    state.authResult.access_token !== null &&
+    state.authResult.access_token !== undefined &&
+    state.authResult.access_token !== ''
 }
 
 const mutations = {
@@ -30,40 +29,18 @@ const mutations = {
     state.globalError = errorMessage
   },
   [type.SET_TOKEN](state, token) {
-    // set access token
-    localStorage.setItem('accessToken', token.value)
-    state.accessToken = token.value
-
-    // set refresh token
-    localStorage.setItem('refreshToken', token.refreshToken.value)
-    state.refreshToken = token.refreshToken.value
-
-    // set token type
-    localStorage.setItem('tokenType', token.tokenType)
-    state.tokenType = token.tokenType
-
-    // set additional info
-    localStorage.setItem('username', token.additionalInformation.username)
-    state.username = token.additionalInformation.username
+    store.authResult = Object.assign({}, token)
+    localStorage.setItem(AUTH_RESULT, JSON.stringify(store.authResult))
+  },
+  [type.CLEAR_TOKEN](state) {
+    localStorage.removeItem(AUTH_RESULT)
+    state.authResult = null
   }
 }
 
 const actions = {
-  login({ commit }, { username, password }) {
-    auth.login(username, password).then(response => {
-      if (response && response.status === 200) {
-        commit(type.SET_TOKEN, response.data)
-      } else {
-        commit(
-          type.ERROR_OCCURRED,
-          'Login failed, username or password was not available'
-        )
-        console.error(`login error, response: ${response}`)
-      }
-    })
-  },
   refresh({ commit }, { refreshToken }) {
-    auth.refreshToken(refreshToken).then(response => {
+    authApi.refreshToken(refreshToken).then(response => {
       if (response && response.status === 200) {
         commit(type.SET_TOKEN, response.data)
       } else {

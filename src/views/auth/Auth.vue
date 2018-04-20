@@ -1,25 +1,71 @@
 <template>
-  <div class="modal-mask" v-show="isAuthShow">
-    <div class="modal">
-      <div class="modal-head">
-        <p class="modal-title">Modal Example</p>
+  <modal okay-text="Sign in" :show="isAuthShow">
+    <p slot="title">
+      Login
+    </p>
+    <div slot="body">
+      <!-- Normal Field -->
+      <div class="form-control">
+        <label>username</label>
+        <input type="text" v-model="username" placeholder="please input your username">
       </div>
-      <div class="modal-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto culpa expedita totam aperiam, aliquid, consectetur!</p>
+
+      <!-- Invalid Field -->
+      <div class="form-control">
+        <label>password</label>
+        <input v-model="password" type="password" placeholder="please input your password">
+        <p v-show="error" class="validation-error">{{error}}</p>
       </div>
-      <div class="modal-footer">
-        <button class="button-warning">Cancel</button>
-        <button class="button-primary">Confirm</button>
-      </div>
+
     </div>
-  </div>
+    <div slot="footer">
+      <button class="button-warning" @click="handleCancelClick">Cancel</button>
+      <button class="button-primary" @click="handleSignInClick">Sign in</button>
+    </div>
+  </modal>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import * as type from '../../store/mutation-type'
+import authApi from '@/apis/auth'
+import Modal from '@/components/modal/Modal'
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
+  components: {
+    Modal
+  },
+  data() {
+    return {
+      username: '',
+      password: '',
+      error: null
+    }
+  },
   computed: {
     ...mapGetters(['isAuthShow'])
+  },
+  methods: {
+    ...mapMutations({
+      togleAuthShow: type.TOGLE_AUTH_PAGE,
+      setToken: type.SET_TOKEN
+    }),
+    handleCancelClick() {
+      this.togleAuthShow()
+    },
+    handleSignInClick() {
+      this.error = null
+      authApi.login(this.username, this.password).then(response => {
+        if (response) {
+          if (response.status === 200) {
+            this.setToken(response.data)
+            this.togleAuthShow()
+          } else {
+            this.error = 'username or password may be not correct'
+          }
+        }
+      })
+    }
   }
 }
 </script>
