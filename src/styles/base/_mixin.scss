@@ -1,3 +1,13 @@
+@mixin duration($second) {
+  -webkit-animation-duration: $second;
+  animation-duration: $second;
+}
+
+@mixin delay($second) {
+  -webkit-animation-delay: $second;
+  animation-delay: $second;
+}
+
 @mixin clearfix {
   &::after {
     content: '';

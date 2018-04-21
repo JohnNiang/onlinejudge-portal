@@ -15,3 +15,27 @@ body {
 svg {
   margin-right: 10px;
 }
+
+.duration-3 {
+  @include duration(3s);
+}
+
+.duration-2 {
+  @include duration(2s);
+}
+
+.duration-1 {
+  @include duration(1s);
+}
+
+.delay-100 {
+  @include delay(0.1s);
+}
+
+.delay-200 {
+  @include delay(0.2s);
+}
+
+.delay-300 {
+  @include delay(0.3s);
+}

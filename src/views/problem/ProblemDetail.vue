@@ -32,6 +32,7 @@
             <p class="alert alert-warning" v-if="languageNotAvailable">The problem does not support any language, please wait for some time.</p>
           </div>
           <div class="codemirror">
+            <label>Code block</label>
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
           <div>
@@ -44,7 +45,6 @@
           </div>
         </div>
         <div class="submissions">
-          <a class="scroll-down" @click="handleCheckSubmissionsClick"></a>
         </div>
       </div>
     </section>
@@ -131,9 +131,12 @@ export default {
       // check code
       if (!this.languageId) {
         this.error = 'please select a language'
+        return false
       } else if (!this.code) {
         this.error = 'please input your source code'
+        return false
       }
+      return true
     },
     handleSubmitClick() {
       if (!this.preCheck()) {
@@ -207,7 +210,6 @@ export default {
     height: 32px;
     border: 2px solid black;
     border-radius: 50%;
-    animation: bounce 2s infinite 2s;
     transition: all 0.2s ease-in;
 
     &::before {
@@ -220,22 +222,6 @@ export default {
       height: 12px;
       border: 2px solid black;
       border-width: 0px 0 2px 2px;
-    }
-  }
-
-  @keyframes bounce {
-    0%,
-    100%,
-    20%,
-    50%,
-    80% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
     }
   }
 }

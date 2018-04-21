@@ -1,6 +1,5 @@
 import service from '../utils/service'
 
-const baseUrl = '/login'
 const clientId = 'onlinejudge'
 const clientSecret = 'openonlinejudge'
 
@@ -8,7 +7,7 @@ const authApi = {}
 
 authApi.login = (username, password) => {
   return service({
-    url: baseUrl,
+    url: '/login',
     params: {
       username: username,
       password: password
@@ -23,14 +22,14 @@ authApi.login = (username, password) => {
 
 authApi.refreshToken = refreshToken => {
   return service({
-    url: baseUrl,
+    url: '/oauth/token',
     params: {
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
       client_id: clientId,
       client_secret: clientSecret
     },
-    method: 'get'
+    method: 'post'
   })
 }
 
