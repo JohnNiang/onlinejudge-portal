@@ -14,7 +14,11 @@ import solid from '@fortawesome/fontawesome-free-solid'
 // import the ngrogress
 import 'nprogress/nprogress.css' // Progress 进度条样式
 
+// import mustard-ui
 import 'mustard-ui/dist/css/mustard-ui.min.css'
+
+// import animation css
+import 'animate.css/animate.min.css'
 
 // add fontawesome library
 fontawesome.library.add(solid)
