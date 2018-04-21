@@ -38,7 +38,7 @@
 import MyPagination from '@/components/pagination/MyPagination'
 import ProgressBar from '@/components/progress-bar/ProgressBar'
 
-import * as problemApi from '@/apis/problem'
+import problemApi from '@/apis/problem'
 import * as filterUtil from '@/utils/filter'
 
 export default {

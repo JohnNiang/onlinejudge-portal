@@ -1,3 +1,5 @@
+import marked from 'marked'
+
 function pluralize(time, label) {
   if (time === 1) {
     return time + label
@@ -65,4 +67,8 @@ export function parseTime(time, cFormat) {
     return value || 0
   })
   return timeStr
+}
+
+export function toHtml(markdown) {
+  return marked(markdown)
 }

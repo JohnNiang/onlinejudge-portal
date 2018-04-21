@@ -15,7 +15,11 @@
               <font-awesome-icon :icon="['fas', 'hdd']"></font-awesome-icon>{{problem.memoryLimit | toThousands}} KB
             </span>
           </div>
-          <div class="description" v-html="problem.description"></div>
+          <div class="row description align-left">
+            <div class="col col-sm-12 col-md-6 col-md-offset-3">
+              <div v-html="toHtml(problem.description)"></div>
+            </div>
+          </div>
           <div class="codemirror">
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
@@ -29,7 +33,8 @@
 </template>
 
 <script>
-import * as problemApi from '@/apis/problem'
+import problemApi from '@/apis/problem'
+import util from '@/utils'
 
 // require component
 import { codemirror } from 'vue-codemirror'
@@ -87,6 +92,9 @@ export default {
           this.problemLanguages = response.data
         }
       })
+    },
+    toHtml(markdown) {
+      return util.toHtml(markdown)
     }
   }
 }
@@ -103,7 +111,8 @@ export default {
 }
 
 .description {
-  text-align: left;
+  border: 0.5px dashed grey;
+  border-radius: 5px;
 }
 
 .limit {

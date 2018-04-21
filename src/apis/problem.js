@@ -2,7 +2,9 @@ import service from '../utils/service'
 
 const baseUrl = '/api/v1/problems'
 
-export function getProblems(page, rpp, sort) {
+const problemApi = {}
+
+problemApi.getProblems = (page, rpp, sort) => {
   return service({
     url: baseUrl,
     params: {
@@ -14,21 +16,21 @@ export function getProblems(page, rpp, sort) {
   })
 }
 
-export function getProblem(id) {
+problemApi.getProblem = id => {
   return service({
     url: `${baseUrl}/${id}`,
     method: 'get'
   })
 }
 
-export function getProblemLanguages(id) {
+problemApi.getProblemLanguages = id => {
   return service({
     url: `${baseUrl}/${id}/languages`,
     method: 'get'
   })
 }
 
-export function postSubmission(problemId, languageId, code) {
+problemApi.postSubmission = (problemId, languageId, code) => {
   return service({
     url: `${baseUrl}/${problemId}/submissions/languages/${languageId}`,
     data: {
@@ -37,3 +39,5 @@ export function postSubmission(problemId, languageId, code) {
     method: 'post'
   })
 }
+
+export default problemApi
