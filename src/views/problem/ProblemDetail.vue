@@ -2,12 +2,16 @@
   <div class="content_wrapper">
     <section class="section-tertiary">
       <div class="container">
-        <div class="problem_wrapper" v-if="problem">
-          <h1>{{problem.title}}</h1>
-          <span class="time">
-            <font-awesome-icon :icon="['fas', 'clock']"></font-awesome-icon>{{problem.updateTime | timeAgo}} ago
-          </span>
-          <div class="limit">
+        <div class="problem_wrapper card" v-if="problem">
+          <div class="card_title">
+            <h1 class="align-center">{{problem.title}}</h1>
+          </div>
+          <div class="time align-center">
+            <span>
+              <font-awesome-icon :icon="['fas', 'clock']"></font-awesome-icon>{{problem.updateTime | timeAgo}} ago
+            </span>
+          </div>
+          <div class="limit align-right">
             <span>
               <font-awesome-icon :icon="['fas', 'stopwatch']"></font-awesome-icon> {{problem.timeLimit | toThousands}} ms
             </span>
@@ -15,17 +19,32 @@
               <font-awesome-icon :icon="['fas', 'hdd']"></font-awesome-icon>{{problem.memoryLimit | toThousands}} KB
             </span>
           </div>
-          <div class="row description align-left">
-            <div class="col col-sm-12 col-md-6 col-md-offset-3">
-              <div v-html="toHtml(problem.description)"></div>
-            </div>
+          <div class="description align-left">
+            <div v-html="toHtml(problem.description)"></div>
+          </div>
+          <div class="languages">
+            <label>Please select your language</label>
+            <select v-model="languageId">
+              <option v-for="(language, index) in problemLanguages" :key="index" :value="language.languageId">
+                {{language.name}}
+              </option>
+            </select>
+            <p class="alert alert-warning" v-if="languageNotAvailable">The problem does not support any language, please wait for some time.</p>
           </div>
           <div class="codemirror">
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
-          <button class="button-primary button-round button-shadow button-long">
-            <font-awesome-icon :icon="['fas', 'upload']" /> Submit
-          </button>
+          <div>
+            <p class="alert alert-danger" v-show="error">{{error}}</p>
+          </div>
+          <div class="card-actions">
+            <button class="button-primary button-round button-shadow button-long" @click="handleSubmitClick">
+              <font-awesome-icon :icon="['fas', 'upload']" /> Submit
+            </button>
+          </div>
+        </div>
+        <div class="submissions">
+          <a class="scroll-down" @click="handleCheckSubmissionsClick"></a>
         </div>
       </div>
     </section>
@@ -56,6 +75,8 @@ export default {
       problem: null,
       problemLanguages: [],
       code: '',
+      languageId: '',
+      error: '',
       cmOptions: {
         tabSize: 4,
         mode: 'text/javascript',
@@ -71,6 +92,13 @@ export default {
     problemId: {
       type: [Number, String],
       required: true
+    }
+  },
+  computed: {
+    languageNotAvailable() {
+      return (
+        this.problemLanguages === null || this.problemLanguages.length === 0
+      )
     }
   },
   mounted() {
@@ -95,6 +123,34 @@ export default {
     },
     toHtml(markdown) {
       return util.toHtml(markdown)
+    },
+    preCheck() {
+      // clear error
+      this.error = null
+      // check language id
+      // check code
+      if (!this.languageId) {
+        this.error = 'please select a language'
+      } else if (!this.code) {
+        this.error = 'please input your source code'
+      }
+    },
+    handleSubmitClick() {
+      if (!this.preCheck()) {
+        return
+      }
+      problemApi
+        .postSubmission(this.problem.problemId, this.languageId, this.code)
+        .then(response => {
+          if (response) {
+            if (response.status === 200) {
+              console.log('submit successfully')
+            }
+          }
+        })
+    },
+    handleCheckSubmissionsClick() {
+      console.log('check submissions')
     }
   }
 }
@@ -102,21 +158,26 @@ export default {
 
 <style lang="scss" scoped>
 .problem_wrapper {
-  text-align: center;
+  > div {
+    margin-bottom: 20px;
+  }
 }
+
 .time {
-  margin-right: 10px;
-  color: grey;
-  font-size: 12px;
+  span {
+    color: grey;
+    font-size: 12px;
+  }
 }
 
 .description {
   border: 0.5px dashed grey;
   border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
 }
 
 .limit {
-  text-align: right;
   span {
     margin-right: 10px;
   }
@@ -126,8 +187,56 @@ export default {
   margin-top: 10px;
 }
 
-.el-button {
-  width: 100%;
-  margin: 10px 0;
+.submissions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  .scroll-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 50%;
+    margin-left: -16px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid black;
+    border-radius: 50%;
+    animation: bounce 2s infinite 2s;
+    transition: all 0.2s ease-in;
+
+    &::before {
+      display: block;
+      position: relative;
+      bottom: 2px;
+      content: '';
+      transform: rotate(-45deg);
+      width: 12px;
+      height: 12px;
+      border: 2px solid black;
+      border-width: 0px 0 2px 2px;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
 }
 </style>
