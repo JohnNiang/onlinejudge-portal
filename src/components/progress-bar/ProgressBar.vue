@@ -1,7 +1,7 @@
 <template>
   <div class="progress-bar">
     <span class="progress-bar-blue" :style="{width: percentageValue}"></span>
-    <span>{{percentageValue}}</span>
+    <span class="value">{{percentageValue}}</span>
   </div>
 </template>
 
@@ -30,5 +30,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.progress-bar {
+  .value {
+    margin-left: 5px;
+  }
+}
 </style>

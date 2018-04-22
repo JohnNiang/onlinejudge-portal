@@ -26,11 +26,9 @@
             </tr>
           </tbody>
         </table>
-        <my-pagination></my-pagination>
+        <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
       </div>
     </section>
-    <!-- <el-pagination layout="prev, pager, next" :current-page="pagination.page" :page-size="pagination.rpp" :total="pagination.total" @current-change="currentPageChange">
-    </el-pagination> -->
   </div>
 </template>
 
@@ -52,7 +50,7 @@ export default {
       pagination: {
         total: 0,
         page: 1,
-        rpp: 6,
+        rpp: 10,
         sort: 'updateTime,desc'
       }
     }
@@ -84,17 +82,19 @@ export default {
           if (response && response.status === 200) {
             this.problems = response.data.datas
             this.pagination.total = response.data.total
-            this.pagination.page = response.data.page
-            this.pagination.rpp = response.data.rpp
           }
         })
     },
-    currentPageChange(currentPage) {
-      this.pagination.page = currentPage
-      this.getProblems()
-    },
     readMore(id) {
       this.$router.push({ name: 'problem_detail', params: { problemId: id } })
+    },
+    handleSizeChange(rpp) {
+      this.pagination.rpp = rpp
+      this.getProblems()
+    },
+    handleCurrentPageChange(currentPage) {
+      this.pagination.page = currentPage
+      this.getProblems()
     }
   }
 }

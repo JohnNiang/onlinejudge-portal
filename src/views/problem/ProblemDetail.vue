@@ -20,6 +20,7 @@
             </span>
           </div>
           <div class="description align-left">
+            <label>Description</label>
             <div v-html="toHtml(problem.description)"></div>
           </div>
           <div class="languages">
@@ -43,8 +44,41 @@
               <font-awesome-icon :icon="['fas', 'upload']" /> Submit
             </button>
           </div>
+          <div v-show="judging" class="progress-bar striped animated">
+            <span class="progress-bar-blue" style="width: 100%;"></span>
+          </div>
         </div>
-        <div class="submissions">
+        <div v-if="!isLogined">
+          <alert type="warning" desc="You are not signed in. So you can't check this problem submission"></alert>
+        </div>
+        <div class="submissions" v-else>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>submitted</th>
+                <th>status</th>
+                <th>code size</th>
+                <th>result</th>
+                <th>score</th>
+                <th>action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="submission in this.submissions" :key="submission.submissionId">
+                <td>{{submission.submissionId}}</td>
+                <td>{{submission.submitTime | timeAgo}} ago</td>
+                <td>{{submission.status}}</td>
+                <td>{{submission.codeSize}}</td>
+                <td>{{submission.result}}</td>
+                <td>{{submission.score}}</td>
+                <td>
+                  <button class="button-primary-text" @click="readMore(problem.problemId)">Result</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
         </div>
       </div>
     </section>
@@ -52,9 +86,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import problemApi from '@/apis/problem'
 import util from '@/utils'
 import Alert from '@/components/alert/Alert'
+import MyPagination from '@/components/pagination/MyPagination'
 
 // require component
 import { codemirror } from 'vue-codemirror'
@@ -70,15 +106,24 @@ import 'codemirror/addon/selection/active-line.js'
 export default {
   components: {
     codemirror,
-    Alert
+    Alert,
+    MyPagination
   },
   data() {
     return {
       problem: null,
       problemLanguages: [],
+      submissions: [],
       code: '',
       languageId: '',
       error: '',
+      judging: false,
+      pagination: {
+        total: 0,
+        page: 1,
+        rpp: 5,
+        sort: 'submissionId,desc'
+      },
       cmOptions: {
         tabSize: 4,
         mode: 'text/javascript',
@@ -97,6 +142,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isLogined']),
     languageNotAvailable() {
       return (
         this.problemLanguages === null || this.problemLanguages.length === 0
@@ -115,7 +161,9 @@ export default {
         if (response && response.status === 200) {
           this.problem = response.data
           // retrive problem language
-          this.getProblemLanguages(this.id)
+          this.getProblemLanguages()
+          // retrive problem submission
+          this.getProblemSubmissions()
         }
       })
     },
@@ -125,6 +173,21 @@ export default {
           this.problemLanguages = response.data
         }
       })
+    },
+    getProblemSubmissions() {
+      if (this.isLogined) {
+        // if logined
+        problemApi
+          .getSubmissions(this.problem.problemId, this.pagination)
+          .then(response => {
+            if (response) {
+              if (response.status === 200) {
+                this.submissions = response.data.datas
+                this.pagination.total = response.data.total
+              }
+            }
+          })
+      }
     },
     toHtml(markdown) {
       return util.toHtml(markdown)
@@ -147,18 +210,31 @@ export default {
       if (!this.preCheck()) {
         return
       }
+      this.judging = true
       problemApi
         .postSubmission(this.problem.problemId, this.languageId, this.code)
         .then(response => {
           if (response) {
             if (response.status === 200) {
               console.log('submit successfully')
+              if (response.data.submissionId) {
+                this.getProblemSubmissions()
+              }
             }
           }
+          this.judging = false
         })
     },
     handleCheckSubmissionsClick() {
       console.log('check submissions')
+    },
+    handleSizeChange(rpp) {
+      this.pagination.rpp = rpp
+      this.getProblemSubmissions()
+    },
+    handleCurrentPageChange(currentPage) {
+      this.pagination.page = currentPage
+      this.getProblemSubmissions()
     }
   }
 }
@@ -191,5 +267,4 @@ export default {
   text-align-last: left;
   margin-top: 10px;
 }
-
 </style>

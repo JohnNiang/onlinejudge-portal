@@ -30,9 +30,14 @@ problemApi.getProblemLanguages = id => {
   })
 }
 
-problemApi.getSubmissions = problemId => {
+problemApi.getSubmissions = (problemId, pagination) => {
   return service({
     url: `${baseUrl}/${problemId}/submissions`,
+    params: {
+      page: pagination.page,
+      rpp: pagination.rpp,
+      sort: pagination.sort
+    },
     method: 'get'
   })
 }
