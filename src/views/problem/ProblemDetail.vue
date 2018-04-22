@@ -29,14 +29,14 @@
                 {{language.name}}
               </option>
             </select>
-            <p class="alert alert-warning" v-if="languageNotAvailable">The problem does not support any language, please wait for some time.</p>
+            <alert :show="languageNotAvailable" type="warning" desc="The problem does not support any language, please wait for some time"></alert>
           </div>
           <div class="codemirror">
             <label>Code block</label>
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
           <div>
-            <p class="alert alert-danger" v-show="error">{{error}}</p>
+            <alert :show="isError" type="danger" :desc="error"></alert>
           </div>
           <div class="card-actions">
             <button class="button-primary button-round button-shadow button-long" @click="handleSubmitClick">
@@ -54,6 +54,7 @@
 <script>
 import problemApi from '@/apis/problem'
 import util from '@/utils'
+import Alert from '@/components/alert/Alert'
 
 // require component
 import { codemirror } from 'vue-codemirror'
@@ -68,7 +69,8 @@ import 'codemirror/addon/selection/active-line.js'
 
 export default {
   components: {
-    codemirror
+    codemirror,
+    Alert
   },
   data() {
     return {
@@ -99,6 +101,9 @@ export default {
       return (
         this.problemLanguages === null || this.problemLanguages.length === 0
       )
+    },
+    isError() {
+      return this.error != null && this.error !== ''
     }
   },
   mounted() {
@@ -174,10 +179,7 @@ export default {
 }
 
 .description {
-  border: 0.5px dashed grey;
-  border-radius: 5px;
   padding: 10px;
-  margin: 10px auto;
 }
 
 .limit {
@@ -190,39 +192,4 @@ export default {
   margin-top: 10px;
 }
 
-.submissions {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 15px;
-  .scroll-down {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    cursor: pointer;
-    top: 10px;
-    left: 50%;
-    margin-left: -16px;
-    width: 32px;
-    height: 32px;
-    border: 2px solid black;
-    border-radius: 50%;
-    transition: all 0.2s ease-in;
-
-    &::before {
-      display: block;
-      position: relative;
-      bottom: 2px;
-      content: '';
-      transform: rotate(-45deg);
-      width: 12px;
-      height: 12px;
-      border: 2px solid black;
-      border-width: 0px 0 2px 2px;
-    }
-  }
-}
 </style>

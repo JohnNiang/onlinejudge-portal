@@ -19,9 +19,9 @@ const getters = {
   globalError: state => state.globalError,
   isLogined: state =>
     state.authResult &&
-    state.authResult.access_token !== null &&
-    state.authResult.access_token !== undefined &&
-    state.authResult.access_token !== ''
+    state.authResult.value !== null &&
+    state.authResult.value !== undefined &&
+    state.authResult.value !== ''
 }
 
 const mutations = {

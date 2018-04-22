@@ -30,6 +30,13 @@ problemApi.getProblemLanguages = id => {
   })
 }
 
+problemApi.getSubmissions = problemId => {
+  return service({
+    url: `${baseUrl}/${problemId}/submissions`,
+    method: 'get'
+  })
+}
+
 problemApi.postSubmission = (problemId, languageId, code) => {
   return service({
     url: `${baseUrl}/${problemId}/submissions/languages/${languageId}`,
