@@ -24,7 +24,7 @@
             <div class="col col-8" data-label="status">{{contest.status}}</div>
           </li>
         </ul>
-        <my-pagination></my-pagination>
+        <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
       </div>
     </section>
   </div>
@@ -43,7 +43,7 @@ export default {
       pagination: {
         page: 1,
         rpp: 5,
-        sort: '',
+        sort: 'updateTime,desc',
         total: 0
       },
       contests: []
@@ -67,12 +67,16 @@ export default {
           }
         })
     },
-    currentPageChange(currentPage) {
-      this.pagination.page = currentPage
-      this.getContests()
-    },
     readMore(id) {
       this.$router.push({ name: 'contest_detail', params: { contestId: id } })
+    },
+    handleSizeChange(rpp) {
+      this.pagination.rpp = rpp
+      this.getContests()
+    },
+    handleCurrentPageChange(currentPage) {
+      this.pagination.page = currentPage
+      this.getContests()
     }
   }
 }
