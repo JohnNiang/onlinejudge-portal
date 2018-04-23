@@ -23,8 +23,8 @@
           <td>{{submission.codeSize}}</td>
           <td>{{submission.result}}</td>
           <td>{{submission.score}}</td>
-          <td>
-            <span class="tooltip" v-if="!isDiabled(submission)">Results
+          <td class="tags">
+            <span class="tooltip tag tag-green" v-if="!isDiabled(submission)">Results
               <span class="tooltip-text">
                 <table>
                   <thead>
@@ -46,7 +46,7 @@
                 </table>
               </span>
             </span>
-            <span v-else>
+            <span v-else class="tag tag-red">
               No Results
             </span>
           </td>

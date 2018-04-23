@@ -4,7 +4,9 @@
       <div class="container">
         <div class="problem_wrapper card" v-if="problem">
           <div class="card_title">
-            <h1 class="align-center">{{problem.title}}</h1>
+            <h1 class="align-center">
+              <font-awesome-icon :icon="['fas', 'book']" /> {{problem.title}}
+            </h1>
           </div>
           <div class="time align-center">
             <span>
@@ -20,11 +22,15 @@
             </span>
           </div>
           <div class="description align-left">
-            <label>Description</label>
+            <label>
+              <font-awesome-icon :icon="['fas', 'archive']" /> Description
+            </label>
             <div v-html="toHtml(problem.description)"></div>
           </div>
           <div class="languages">
-            <label>Please select your language</label>
+            <label>
+              <font-awesome-icon :icon="['fas', 'at']" /> Please select your language
+            </label>
             <select v-model="languageId">
               <option v-for="(language, index) in problemLanguages" :key="index" :value="language.languageId">
                 {{language.name}}
@@ -33,7 +39,9 @@
             <alert v-if="languageNotAvailable" type="warning" desc="The problem does not support any language, please wait for some time"></alert>
           </div>
           <div class="codemirror">
-            <label>Code block</label>
+            <label>
+              <font-awesome-icon :icon="['fas', 'code']" /> Code block
+            </label>
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
           <div>

@@ -12,6 +12,12 @@ body {
   width: 100%;
 }
 
+label {
+  &:after {
+    content: ': ';
+  }
+}
+
 svg {
   margin-right: 10px;
 }
