@@ -1,20 +1,22 @@
 <template>
-  <div class="modal-mask" v-if="show">
-    <div class="modal">
-      <div class="modal-head">
-        <div class="modal-title">
-          <slot name="title"></slot>
+  <transition name="fade">
+    <div class="modal-mask" v-if="show">
+      <div class="modal">
+        <div class="modal-head">
+          <div class="modal-title">
+            <slot name="title"></slot>
+          </div>
+        </div>
+        <div class="modal-body">
+          <slot name="body"></slot>
+        </div>
+        <div class="modal-footer">
+          <slot name="footer">
+          </slot>
         </div>
       </div>
-      <div class="modal-body">
-        <slot name="body"></slot>
-      </div>
-      <div class="modal-footer">
-        <slot name="footer">
-        </slot>
-      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -56,5 +58,14 @@ export default {
 <style lang="scss" scoped>
 .modal {
   width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
