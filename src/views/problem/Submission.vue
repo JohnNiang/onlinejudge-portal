@@ -65,11 +65,6 @@ export default {
   props: {
     submissions: Array
   },
-  data() {
-    return {
-      submission: null
-    }
-  },
   computed: {
     isEmpty() {
       return (
@@ -80,20 +75,8 @@ export default {
     }
   },
   methods: {
-    handleCheckResultClick(submission) {
-      this.getSubmission(submission)
-    },
-    getSubmission(submission) {
-      this.submission = submission
-    },
     isDiabled(submission) {
-      if (submission.dataResult && submission.dataResult.length > 0) {
-        return false
-      }
-      return true
-    },
-    handleDataResultClose() {
-      this.submission = null
+      return !(submission.dataResult && submission.dataResult.length > 0)
     }
   }
 }
