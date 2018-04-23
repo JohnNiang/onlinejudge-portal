@@ -2,21 +2,36 @@
   <div class="content_wrapper contest_wrapper">
     <section class="section-tertiary">
       <div class="container">
-        <div v-if="contest">
-          <h1>{{contest.title}}</h1>
-          <hr>
-          <span class="time">created: {{contest.createTime | timeAgo}}</span>
-          <span class="time">updated: {{contest.updateTime | timeAgo}}</span>
-          <hr>
-          <span class="time">started: {{contest.startTime | parseTime}}</span>
-          <span class="time">ended: {{contest.endTime | parseTime}}</span>
-          <hr>
-          <span>type: {{contest.type}}</span>
-          <span>status: {{contest.status}}</span>
-          <hr>
-          <div class="description" v-html="contest.description"></div>
-          <hr>
-          <button class="button-primary button-round button-shadow button-long">I want play</button>
+        <div class="card" v-if="contest">
+          <div class="card-title align-center">
+            <h1>
+              <font-awesome-icon :icon="['fas', 'terminal']" /> {{contest.title}}
+            </h1>
+          </div>
+          <div class="time align-center">
+            <span>
+              <font-awesome-icon :icon="['fas', 'clock']" /> {{contest.updateTime | timeAgo}} ago
+            </span>
+          </div>
+          <div class="time align-center">
+            <span>
+              <font-awesome-icon :icon="['far', 'clock']" /> {{contest.startTime | parseTime}}</span>
+            <span>
+              <font-awesome-icon :icon="['fas', 'clock']" /> {{contest.endTime | parseTime}}</span>
+          </div>
+          <div class="align-right">
+            <span>type: {{contest.type}}</span>
+            <span>status: {{contest.status}}</span>
+          </div>
+          <div>
+            <label>
+              <font-awesome-icon :icon="['fas', 'archive']" /> Description
+            </label>
+            <div class="description" v-html="toHtml(contest.description)"></div>
+          </div>
+          <div class="card-actions">
+            <button class="button-primary button-round button-shadow button-long">I want play</button>
+          </div>
         </div>
       </div>
     </section>
@@ -25,6 +40,7 @@
 
 <script>
 import * as contestApi from '@/apis/contest'
+import util from '@/utils'
 
 export default {
   props: {
@@ -48,18 +64,26 @@ export default {
           this.contest = response.data
         }
       })
+    },
+    toHtml(markdown) {
+      return util.toHtml(markdown)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.contest_wrapper {
-  text-align: center;
+.card > div {
+  margin-bottom: 20px;
 }
 
-.description {
-  text-align: left;
+.time {
+  span {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
 }
 
 .apply_button {

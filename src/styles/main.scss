@@ -19,7 +19,14 @@ label {
 }
 
 svg {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.time {
+  span {
+    color: grey;
+    font-size: 12px;
+  }
 }
 
 .duration-3 {

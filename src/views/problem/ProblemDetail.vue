@@ -3,22 +3,22 @@
     <section class="section-tertiary">
       <div class="container">
         <div class="problem_wrapper card" v-if="problem">
-          <div class="card_title">
+          <div class="card-title">
             <h1 class="align-center">
               <font-awesome-icon :icon="['fas', 'book']" /> {{problem.title}}
             </h1>
           </div>
           <div class="time align-center">
             <span>
-              <font-awesome-icon :icon="['fas', 'clock']"></font-awesome-icon>{{problem.updateTime | timeAgo}} ago
+              <font-awesome-icon :icon="['fas', 'clock']" /> {{problem.updateTime | timeAgo}} ago
             </span>
           </div>
           <div class="limit align-right">
             <span>
-              <font-awesome-icon :icon="['fas', 'stopwatch']"></font-awesome-icon> {{problem.timeLimit | toThousands}} ms
+              <font-awesome-icon :icon="['fas', 'stopwatch']" /> {{problem.timeLimit | toThousands}} ms
             </span>
             <span>
-              <font-awesome-icon :icon="['fas', 'hdd']"></font-awesome-icon>{{problem.memoryLimit | toThousands}} KB
+              <font-awesome-icon :icon="['fas', 'hdd']" /> {{problem.memoryLimit | toThousands}} KB
             </span>
           </div>
           <div class="description align-left">
@@ -241,13 +241,6 @@ export default {
 .problem_wrapper {
   > div {
     margin-bottom: 20px;
-  }
-}
-
-.time {
-  span {
-    color: grey;
-    font-size: 12px;
   }
 }
 
