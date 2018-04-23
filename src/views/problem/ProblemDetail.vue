@@ -30,14 +30,14 @@
                 {{language.name}}
               </option>
             </select>
-            <alert :show="languageNotAvailable" type="warning" desc="The problem does not support any language, please wait for some time"></alert>
+            <alert v-if="languageNotAvailable" type="warning" desc="The problem does not support any language, please wait for some time"></alert>
           </div>
           <div class="codemirror">
             <label>Code block</label>
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
           <div>
-            <alert :show="isError" type="danger" :desc="error"></alert>
+            <alert v-if="isError" type="danger" :desc="error"></alert>
           </div>
           <div class="card-actions">
             <button class="button-primary button-round button-shadow button-long" @click="handleSubmitClick">
@@ -48,37 +48,20 @@
             <span class="progress-bar-blue" style="width: 100%;"></span>
           </div>
         </div>
-        <div v-if="!isLogined">
-          <alert type="warning" desc="You are not signed in. So you can't check this problem submission"></alert>
-        </div>
-        <div class="submissions" v-else>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>submitted</th>
-                <th>status</th>
-                <th>code size</th>
-                <th>result</th>
-                <th>score</th>
-                <th>action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="submission in this.submissions" :key="submission.submissionId">
-                <td>{{submission.submissionId}}</td>
-                <td>{{submission.submitTime | timeAgo}} ago</td>
-                <td>{{submission.status}}</td>
-                <td>{{submission.codeSize}}</td>
-                <td>{{submission.result}}</td>
-                <td>{{submission.score}}</td>
-                <td>
-                  <button class="button-primary-text" @click="readMore(problem.problemId)">Result</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
+        <div class="card">
+          <div class="card_title">
+            <h5 class="align-center">Submissions</h5>
+          </div>
+          <button class="button-primary-text button-small">
+            <font-awesome-icon :icon="['fas', 'sync']" /> refresh
+          </button>
+          <div v-if="!isLogined">
+            <alert type="warning" desc="You are not signed in. So you can't check this problem submission"></alert>
+          </div>
+          <div class="submissions" v-else>
+            <submission :submissions="submissions"></submission>
+            <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
+          </div>
         </div>
       </div>
     </section>
@@ -91,6 +74,7 @@ import problemApi from '@/apis/problem'
 import util from '@/utils'
 import Alert from '@/components/alert/Alert'
 import MyPagination from '@/components/pagination/MyPagination'
+import Submission from './Submission'
 
 // require component
 import { codemirror } from 'vue-codemirror'
@@ -107,7 +91,8 @@ export default {
   components: {
     codemirror,
     Alert,
-    MyPagination
+    MyPagination,
+    Submission
   },
   data() {
     return {
