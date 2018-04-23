@@ -1,9 +1,11 @@
 <template>
-  <p v-show="show" class="alert align-left" :class="[typeClass, shakeAnimation]">
-    <slot>
-      {{desc}}
-    </slot>
-  </p>
+  <transition leave-active-class="animated fadeOut">
+    <p v-show="visiable" class="alert align-left" :class="[typeClass, {'animated shake': animated}]" @animationend="animated = false">
+      <slot>
+        {{desc}}
+      </slot>
+    </p>
+  </transition>
 </template>
 
 <script>
@@ -16,35 +18,35 @@ export default {
     desc: {
       type: String,
       default: ''
-    },
-    show: {
-      type: Boolean,
-      default: true
+    }
+  },
+  data() {
+    return {
+      visiable: true,
+      animated: true
     }
   },
   computed: {
     typeClass() {
       return `alert-${this.type}`
-    },
-    shakeAnimation() {
-      return `animated shake`
     }
   },
+  methods: {},
   watch: {
-    show: function(newValue, oldValue) {
-      if (newValue) {
-        // add animated shake
-      }
+    desc(newValue, oldValue) {
+      this.animated = true
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.close_button {
-  position: relative;
-  top: -10px;
-  right: 0;
-  float: right;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
