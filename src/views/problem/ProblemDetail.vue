@@ -52,7 +52,7 @@
           <div class="card_title">
             <h5 class="align-center">Submissions</h5>
           </div>
-          <button class="button-primary-text button-small">
+          <button class="button-primary-text button-small" @click="handleRefreshClick">
             <font-awesome-icon :icon="['fas', 'sync']" /> refresh
           </button>
           <div v-if="!isLogined">
@@ -60,7 +60,7 @@
           </div>
           <div class="submissions" v-else>
             <submission :submissions="submissions"></submission>
-            <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
+            <my-pagination class="card-actions" :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
           </div>
         </div>
       </div>
@@ -71,6 +71,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import problemApi from '@/apis/problem'
+import submissionApi from '@/apis/submission'
 import util from '@/utils'
 import Alert from '@/components/alert/Alert'
 import MyPagination from '@/components/pagination/MyPagination'
@@ -162,7 +163,7 @@ export default {
     getProblemSubmissions() {
       if (this.isLogined) {
         // if logined
-        problemApi
+        submissionApi
           .getSubmissions(this.problem.problemId, this.pagination)
           .then(response => {
             if (response) {
@@ -196,7 +197,7 @@ export default {
         return
       }
       this.judging = true
-      problemApi
+      submissionApi
         .postSubmission(this.problem.problemId, this.languageId, this.code)
         .then(response => {
           if (response) {
@@ -219,6 +220,9 @@ export default {
     },
     handleCurrentPageChange(currentPage) {
       this.pagination.page = currentPage
+      this.getProblemSubmissions()
+    },
+    handleRefreshClick() {
       this.getProblemSubmissions()
     }
   }

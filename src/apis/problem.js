@@ -30,26 +30,4 @@ problemApi.getProblemLanguages = id => {
   })
 }
 
-problemApi.getSubmissions = (problemId, pagination) => {
-  return service({
-    url: `${baseUrl}/${problemId}/submissions`,
-    params: {
-      page: pagination.page,
-      rpp: pagination.rpp,
-      sort: pagination.sort
-    },
-    method: 'get'
-  })
-}
-
-problemApi.postSubmission = (problemId, languageId, code) => {
-  return service({
-    url: `${baseUrl}/${problemId}/submissions/languages/${languageId}`,
-    data: {
-      code: code
-    },
-    method: 'post'
-  })
-}
-
 export default problemApi

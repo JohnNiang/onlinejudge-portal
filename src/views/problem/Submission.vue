@@ -24,7 +24,31 @@
           <td>{{submission.result}}</td>
           <td>{{submission.score}}</td>
           <td>
-            <button class="button-primary-text" @click="handleCheckResultClick(submission.submissionId)">Result</button>
+            <span class="tooltip" v-if="!isDiabled(submission)">Results
+              <span class="tooltip-text">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>used time (ms)</th>
+                      <th>used memory (KB)</th>
+                      <th>result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(dataResult, index) in submission.dataResult" :key="index">
+                      <td>{{index+1}}</td>
+                      <td>{{dataResult.usedTime}}</td>
+                      <td>{{dataResult.usedMemory}}</td>
+                      <td>{{dataResult.result}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </span>
+            </span>
+            <span v-else>
+              No Results
+            </span>
           </td>
         </tr>
       </tbody>
@@ -41,6 +65,11 @@ export default {
   props: {
     submissions: Array
   },
+  data() {
+    return {
+      submission: null
+    }
+  },
   computed: {
     isEmpty() {
       return (
@@ -51,7 +80,21 @@ export default {
     }
   },
   methods: {
-    handleCheckResultClick(submissionId) {}
+    handleCheckResultClick(submission) {
+      this.getSubmission(submission)
+    },
+    getSubmission(submission) {
+      this.submission = submission
+    },
+    isDiabled(submission) {
+      if (submission.dataResult && submission.dataResult.length > 0) {
+        return false
+      }
+      return true
+    },
+    handleDataResultClose() {
+      this.submission = null
+    }
   }
 }
 </script>

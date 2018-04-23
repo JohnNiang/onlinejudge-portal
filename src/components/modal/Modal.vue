@@ -1,9 +1,10 @@
 <template>
   <transition name="fade">
-    <div class="modal-mask" v-if="show">
+    <div class="modal-mask" v-show="visiable">
       <div class="modal">
         <div class="modal-head">
           <div class="modal-title">
+            <font-awesome-icon class="close_icon" :icon="['far', 'times-circle']" @click="handleCloseClick" />
             <slot name="title"></slot>
           </div>
         </div>
@@ -20,15 +21,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import * as type from '../../store/mutation-type'
-
 export default {
   props: {
     show: {
       type: Boolean,
-      required: true,
-      default: false
+      required: true
     },
     okayText: {
       type: String,
@@ -39,17 +36,23 @@ export default {
       default: 'Cancel'
     }
   },
+  data() {
+    return {
+      visiable: true
+    }
+  },
+  mounted() {
+    this.visiable = this.show
+  },
   methods: {
-    ...mapMutations({
-      togleAuthShow: type.TOGLE_AUTH_PAGE
-    }),
     handleCloseClick() {
+      this.visiable = false
       this.$emit('on-close')
-      this.togleAuthShow()
-    },
-    handleOkClick() {
-      this.$emit('on-ok')
-      this.togleAuthShow()
+    }
+  },
+  watch: {
+    show: function(newValue, oldValue) {
+      this.visiable = newValue
     }
   }
 }
@@ -60,9 +63,17 @@ export default {
   width: 100%;
 }
 
+.close_icon {
+  float: right;
+  position: relative;
+  top: 5px;
+  right: -10px;
+  cursor: pointer;
+}
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.15s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .fade-enter,
 .fade-leave-to {

@@ -1,5 +1,5 @@
 <template>
-  <modal okay-text="Sign in" :show="isAuthShow">
+  <modal :show="isAuthShow" @on-close="handleModalClose">
     <p slot="title">
       Login
     </p>
@@ -52,6 +52,9 @@ export default {
     }),
     handleCancelClick() {
       this.togleAuthShow()
+    },
+    handleModalClose() {
+      this.handleCancelClick()
     },
     handleSignInClick() {
       this.error = null

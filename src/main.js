@@ -10,6 +10,7 @@ import * as filter from './utils/filter'
 import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import solid from '@fortawesome/fontawesome-free-solid'
+import regular from '@fortawesome/fontawesome-free-regular'
 
 // import the ngrogress
 import 'nprogress/nprogress.css' // Progress 进度条样式
@@ -21,7 +22,7 @@ import 'mustard-ui/dist/css/mustard-ui.min.css'
 import 'animate.css/animate.min.css'
 
 // add fontawesome library
-fontawesome.library.add(solid)
+fontawesome.library.add(solid, regular)
 
 Vue.config.productionTip = false
 
