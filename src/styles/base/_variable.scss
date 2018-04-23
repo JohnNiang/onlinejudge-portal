@@ -2,12 +2,13 @@ $black-color: #3d3e3f;
 $white-color: #ffffff;
 $link-color: #2d2d2d;
 $link-hover-color: #757272;
-$header-background-color: $white-color;
+$header-background-color: #079cff;
 $header-color: $black-color;
+$nav-background-color: $header-background-color;
 $nav-active-color: #439fff;
 $footer-color: #757272;
 $footer-background-color: $black-color;
-$hr-color: #D1D4D7;
+$hr-color: #d1d4d7;
 
 $mq_small_only: '(max-width: 640px)';
 $mq_medium_only: '(min-width: 641px) and (max-width: 1024px)';

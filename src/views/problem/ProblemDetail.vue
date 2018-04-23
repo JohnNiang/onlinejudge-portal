@@ -81,7 +81,6 @@ import { mapGetters } from 'vuex'
 import problemApi from '@/apis/problem'
 import submissionApi from '@/apis/submission'
 import util from '@/utils'
-import Alert from '@/components/alert/Alert'
 import MyPagination from '@/components/pagination/MyPagination'
 import Submission from './Submission'
 
@@ -99,7 +98,6 @@ import 'codemirror/addon/selection/active-line.js'
 export default {
   components: {
     codemirror,
-    Alert,
     MyPagination,
     Submission
   },

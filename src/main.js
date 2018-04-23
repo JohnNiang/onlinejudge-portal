@@ -21,6 +21,9 @@ import 'mustard-ui/dist/css/mustard-ui.min.css'
 // import animation css
 import 'animate.css/animate.min.css'
 
+// import components
+import './components/'
+
 // add fontawesome library
 fontawesome.library.add(solid, regular)
 

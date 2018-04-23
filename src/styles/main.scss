@@ -22,6 +22,16 @@ svg {
   margin-right: 5px;
 }
 
+header,
+.header {
+  background: $header-background-color;
+}
+
+nav,
+.nav {
+  background: $nav-background-color;
+}
+
 .time {
   span {
     color: grey;
