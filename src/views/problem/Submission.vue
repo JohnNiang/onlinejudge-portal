@@ -23,32 +23,8 @@
           <td>{{submission.codeSize}}</td>
           <td>{{submission.result}}</td>
           <td>{{submission.score}}</td>
-          <td class="tags">
-            <span class="tooltip tag tag-green" v-if="!isDiabled(submission)">Results
-              <span class="tooltip-text">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>used time (ms)</th>
-                      <th>used memory (KB)</th>
-                      <th>result</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(dataResult, index) in submission.dataResult" :key="index">
-                      <td>{{index+1}}</td>
-                      <td>{{dataResult.usedTime}}</td>
-                      <td>{{dataResult.usedMemory}}</td>
-                      <td>{{dataResult.result}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </span>
-            </span>
-            <span v-else class="tag tag-red">
-              No Results
-            </span>
+          <td>
+            <data-result :submission="submission"></data-result>
           </td>
         </tr>
       </tbody>
@@ -57,13 +33,19 @@
 </template>
 
 <script>
-import Alert from '@/components/alert/Alert'
+import DataResult from './DataResult'
+
 export default {
   components: {
-    Alert
+    DataResult
   },
   props: {
     submissions: Array
+  },
+  data() {
+    return {
+      dataResults: []
+    }
   },
   computed: {
     isEmpty() {

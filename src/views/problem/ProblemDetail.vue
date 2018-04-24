@@ -21,7 +21,7 @@
               <font-awesome-icon :icon="['fas', 'hdd']" /> {{problem.memoryLimit | toThousands}} KB
             </span>
           </div>
-          <div class="description align-left">
+          <div class="description">
             <label>
               <font-awesome-icon :icon="['fas', 'archive']" /> Description
             </label>
@@ -240,10 +240,6 @@ export default {
   > div {
     margin-bottom: 20px;
   }
-}
-
-.description {
-  padding: 10px;
 }
 
 .limit {

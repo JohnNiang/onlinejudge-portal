@@ -32,4 +32,11 @@ submissionApi.getSubmission = submissionId => {
     method: 'get'
   })
 }
+
+submissionApi.getDataResult = submissionId => {
+  return service({
+    url: `${baseUrl}/${submissionId}/data_result`,
+    method: 'get'
+  })
+}
 export default submissionApi

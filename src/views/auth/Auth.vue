@@ -3,7 +3,7 @@
     <p slot="title">
       Login
     </p>
-    <div slot="body">
+    <div slot="body" @keyup.enter="handleSignInClick">
       <!-- Normal Field -->
       <div class="form-control">
         <label>username</label>
