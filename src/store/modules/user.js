@@ -1,6 +1,5 @@
 import * as type from '../mutation-type'
 import authApi from '../../apis/auth'
-import store from '..'
 
 const AUTH_RESULT = 'authResult'
 
@@ -29,7 +28,7 @@ const mutations = {
     state.globalError = errorMessage
   },
   [type.SET_TOKEN](state, token) {
-    store.authResult = token
+    state.authResult = token
     localStorage.setItem(AUTH_RESULT, JSON.stringify(token))
   },
   [type.CLEAR_TOKEN](state) {
