@@ -27,7 +27,14 @@
             <router-link to="/about" tag="a">关于Chang OJ</router-link>
           </li>
           <li>
-            <a @click="handleSignInClick" style="cursor: pointer">登录</a>
+            <a v-if="!isLogined" @click="handleSignInClick" style="cursor: pointer">登录</a>
+            <ul class="menu" v-else>
+              <li>
+                <a class="headmenu">{{user.username}}</a>
+                <a class="submenu">个人中心</a>
+                <a class="submenu">登出</a>
+              </li>
+            </ul>
           </li>
         </ul>
         <a class="mobile-menu-toggle"></a>
@@ -51,13 +58,16 @@
 <script>
 import * as type from '../../store/mutation-type'
 import Auth from '../auth/Auth'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
   components: {
     Auth
   },
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['isLogined', 'user'])
   },
   methods: {
     ...mapMutations({
@@ -73,5 +83,21 @@ export default {
 <style lang="scss" scoped>
 .router-link-active {
   border-bottom: 4px solid #4caf50;
+}
+
+.menu {
+  cursor: pointer;
+  width: 150px;
+  background: inherit;
+  .submenu {
+    display: none;
+    margin-top: 5px;
+    background: white;
+  }
+  &:hover {
+    .submenu {
+      display: block;
+    }
+  }
 }
 </style>
