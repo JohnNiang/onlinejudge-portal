@@ -12,7 +12,10 @@
           <h4 class="footer-links-category">合作伙伴</h4>
           <ul class="footer-links">
             <li>
-              <a href="htts://yunload.org" target="_blank">YunLoad</a>
+              <a href="https://yunload.org" target="_blank">YunLoad</a>
+            </li>
+            <li>
+              <a href="https://github.com" target="_blank">Github</a>
             </li>
           </ul>
         </div>
@@ -22,6 +25,9 @@
           <ul class="footer-links">
             <li>
               <a href="http://jw.cqjtu.edu.cn" target="_blank">重庆交通大学教务网</a>
+            </li>
+            <li>
+              <a href="http://sise.cqjtu.edu.cn/" target="_blank">信息科学与工程学院</a>
             </li>
           </ul>
         </div>
