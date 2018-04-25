@@ -6,10 +6,10 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Title</th>
-              <th>Updated</th>
-              <th>Ratio</th>
-              <th>Action</th>
+              <th>标题</th>
+              <th>更新时间</th>
+              <th>提交/通过比例</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>

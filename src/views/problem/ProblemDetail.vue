@@ -26,13 +26,13 @@
           </div>
           <div class="description">
             <label>
-              <font-awesome-icon :icon="['fas', 'archive']" /> Description
+              <font-awesome-icon :icon="['fas', 'archive']" /> 描述
             </label>
             <div v-html="toHtml(problem.description)"></div>
           </div>
           <div class="languages">
             <label>
-              <font-awesome-icon :icon="['fas', 'at']" /> Please select your language
+              <font-awesome-icon :icon="['fas', 'at']" /> 请选择语言
             </label>
             <select v-model="languageId">
               <option v-for="(language, index) in problemLanguages" :key="index" :value="language.languageId">
@@ -43,7 +43,7 @@
           </div>
           <div class="codemirror">
             <label>
-              <font-awesome-icon :icon="['fas', 'code']" /> Code block
+              <font-awesome-icon :icon="['fas', 'code']" /> 代码块
             </label>
             <codemirror v-model="code" :options="cmOptions"></codemirror>
           </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="card-actions">
             <button class="button-primary button-round button-shadow button-long" @click="handleSubmitClick">
-              <font-awesome-icon :icon="['fas', 'upload']" /> Submit
+              <font-awesome-icon :icon="['fas', 'upload']" /> 提交
             </button>
           </div>
           <div v-show="judging" class="progress-bar striped animated">
@@ -61,10 +61,10 @@
         </div>
         <div class="card">
           <div class="card_title">
-            <h5 class="align-center">Submissions</h5>
+            <h5 class="align-center">提交</h5>
           </div>
           <button class="button-primary-text button-small" @click="handleRefreshClick">
-            <font-awesome-icon :icon="['fas', 'sync']" /> refresh
+            <font-awesome-icon :icon="['fas', 'sync']" /> 刷新
           </button>
           <div v-if="!isLogined">
             <alert type="warning" desc="You are not signed in. So you can't check this problem submission"></alert>

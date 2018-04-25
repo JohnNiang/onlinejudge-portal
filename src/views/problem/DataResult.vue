@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <span class="tag tag-info" v-if="isDisabled">
-      No results
+      没有结果
     </span>
     <span class="tooltip tag" v-else :class="tagType" @mouseover="handleMouseOver">
       {{resultText}}
@@ -10,9 +10,9 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>used time (ms)</th>
-              <th>used memory (KB)</th>
-              <th>result</th>
+              <th>运行时间 (ms)</th>
+              <th>使用内存 (KB)</th>
+              <th>结果</th>
             </tr>
           </thead>
           <tbody>

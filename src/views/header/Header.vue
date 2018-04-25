@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-container">
         <div class="nav-logo">
-          <router-link to="/home" tag="a">Chang OJ</router-link>
+          <router-link to="/home" tag="a">CJ OJ</router-link>
         </div>
         <ul class="nav-links">
           <li>
@@ -17,7 +17,7 @@
             <router-link to="/ranklist" tag="a">排行榜</router-link>
           </li>
           <li>
-            <router-link to="/about" tag="a">关于Chang OJ</router-link>
+            <router-link to="/about" tag="a">关于CJ OJ</router-link>
           </li>
           <li>
             <a v-if="!isLogined" @click="handleSignInClick" style="cursor: pointer">登录</a>
@@ -25,7 +25,7 @@
               <li>
                 <a class="headmenu align-center">{{user.username}}</a>
                 <a class="submenu">个人中心</a>
-                <a class="submenu">登出</a>
+                <a class="submenu">注销</a>
               </li>
             </ul>
           </li>
