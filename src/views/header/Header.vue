@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav id="nav">
+    <nav>
       <div class="nav-container">
         <div class="nav-logo">
           <router-link to="/home" tag="a">Chang OJ</router-link>

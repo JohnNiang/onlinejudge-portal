@@ -4,10 +4,10 @@
       <h1 class="title">Chang OJ</h1>
       <h2 class="subtitle">An Online Judge for CQJTU</h2>
       <p class="disclaimer">A powerful judge backend and more problems.</p>
-      <button class="get-started button button-primary button-large">Go to Practice</button>
-      <a class="scroll-down" href="#nav"></a>
+      <router-link to="/problems" tag="button" class="get-started button button-primary button-large">Go to practice</router-link>
+      <a class="scroll-down" v-scroll-to="'#intro'"></a>
     </header>
-    <section class="section-tertiary">
+    <section class="section-tertiary" id="intro">
       <div class="row">
         <div class="col col-md-6 col-xlg-3 align-center">
           <strong class="h4">Hello World</strong>
@@ -61,5 +61,10 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-
+header {
+  height: calc(100vh - 60px);
+}
+.scroll-down {
+  cursor: pointer;
+}
 </style>

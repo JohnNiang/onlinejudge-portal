@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as filter from './utils/filter'
+import vueScrollTo from 'vue-scrollto'
 
 // import font awesome
 import fontawesome from '@fortawesome/fontawesome'
@@ -31,6 +32,7 @@ Vue.config.productionTip = false
 
 // use the font awesome
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.use(vueScrollTo)
 
 // import filter
 Object.keys(filter).forEach(key => {
