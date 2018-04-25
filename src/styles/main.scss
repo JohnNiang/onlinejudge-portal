@@ -6,6 +6,9 @@ body {
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  &.in-transition {
+    transition: transform 900ms ease;
+  }
 }
 
 .button-long {
@@ -36,6 +39,24 @@ nav,
   span {
     color: grey;
     font-size: 12px;
+  }
+}
+
+.menu {
+  cursor: pointer;
+  width: 150px;
+  background: inherit;
+  position: relative;
+  z-index: 10;
+  .submenu {
+    display: none;
+    margin-top: 5px;
+    background: white;
+  }
+  &:hover {
+    .submenu {
+      display: block;
+    }
   }
 }
 

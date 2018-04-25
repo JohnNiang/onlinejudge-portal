@@ -1,5 +1,12 @@
 <template>
   <div>
+    <header>
+      <h1 class="title">Chang OJ</h1>
+      <h2 class="subtitle">An Online Judge for CQJTU</h2>
+      <p class="disclaimer">A powerful judge backend and more problems.</p>
+      <button class="get-started button button-primary button-large">Go to Practice</button>
+      <a class="scroll-down" href="#nav"></a>
+    </header>
     <section class="section-tertiary">
       <div class="row">
         <div class="col col-md-6 col-xlg-3 align-center">
