@@ -17,7 +17,7 @@
             <router-link to="/ranklist" tag="a">排行榜</router-link>
           </li>
           <li>
-            <router-link to="/about" tag="a">关于CJ OJ</router-link>
+            <router-link to="/about" tag="a">关于</router-link>
           </li>
           <li>
             <a v-if="!isLogined" @click="handleSignInClick" style="cursor: pointer">登录</a>
