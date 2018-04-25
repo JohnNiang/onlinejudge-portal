@@ -1,26 +1,26 @@
 <template>
   <modal :show="isAuthShow" @on-close="handleModalClose">
     <p slot="title">
-      Login
+      登录
     </p>
     <div slot="body" @keyup.enter="handleSignInClick">
       <!-- Normal Field -->
       <div class="form-control">
-        <label>username</label>
-        <input type="text" v-model="username" placeholder="please input your username">
+        <label>用户名</label>
+        <input type="text" v-model="username" placeholder="请输入你的用户名">
       </div>
 
       <!-- Invalid Field -->
       <div class="form-control">
-        <label>password</label>
-        <input v-model="password" type="password" placeholder="please input your password">
+        <label>密码</label>
+        <input v-model="password" type="password" placeholder="输入你的密码">
         <p v-show="error" class="validation-error">{{error}}</p>
       </div>
 
     </div>
     <div slot="footer">
-      <button class="button-warning" @click="handleCancelClick">Cancel</button>
-      <button class="button-primary" @click="handleSignInClick">Sign in</button>
+<!--      <button class="button-warning" @click="handleCancelClick">Cancel</button> -->
+      <button class="button-primary" @click="handleSignInClick">登录</button>
     </div>
   </modal>
 </template>

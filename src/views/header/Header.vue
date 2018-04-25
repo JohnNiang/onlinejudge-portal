@@ -15,19 +15,19 @@
         <ul class="nav-links">
           <li>
             <!-- <a class="active" href="/docs/installation">Prolem</a> -->
-            <router-link to="/problems" tag="a">Problem</router-link>
+            <router-link to="/problems" tag="a">题库</router-link>
           </li>
           <li>
-            <router-link to="/contests" tag="a">Contest</router-link>
+            <router-link to="/contests" tag="a">比赛</router-link>
           </li>
           <li>
-            <router-link to="/ranklist" tag="a">Ranklist</router-link>
+            <router-link to="/ranklist" tag="a">排行榜</router-link>
           </li>
           <li>
-            <router-link to="/about" tag="a">About</router-link>
+            <router-link to="/about" tag="a">关于Chang OJ</router-link>
           </li>
           <li>
-            <a @click="handleSignInClick" style="cursor: pointer">Sign in</a>
+            <a @click="handleSignInClick" style="cursor: pointer">登录</a>
           </li>
         </ul>
         <a class="mobile-menu-toggle"></a>
