@@ -14,13 +14,13 @@
       <div class="form-control">
         <label>密码</label>
         <input v-model="password" type="password" placeholder="输入你的密码">
-        <p v-show="error" class="validation-error">{{error}}</p>
       </div>
-
+      <alert v-if="error" type="danger" :desc="error"></alert>
+      <alert v-if="info" type="success" :desc="info"></alert>
     </div>
     <div slot="footer">
-<!--      <button class="button-warning" @click="handleCancelClick">Cancel</button> -->
       <button class="button-primary" @click="handleSignInClick">登录</button>
+      <button class="button-info float-right" @click="handleSignUpClick">注册</button>
     </div>
   </modal>
 </template>
@@ -39,7 +39,8 @@ export default {
     return {
       username: '',
       password: '',
-      error: null
+      error: null,
+      info: null
     }
   },
   computed: {
@@ -65,6 +66,18 @@ export default {
             this.togleAuthShow()
           } else {
             this.error = 'username or password may be not correct'
+          }
+        }
+      })
+    },
+    handleSignUpClick() {
+      this.error = null
+      authApi.signUp(this.username, this.password).then(response => {
+        if (response) {
+          if (response.status === 200) {
+            this.info = '注册成功，请直接登陆'
+          } else {
+            this.error = response.data.message
           }
         }
       })

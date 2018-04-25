@@ -20,6 +20,17 @@ authApi.login = (username, password) => {
   })
 }
 
+authApi.signUp = (username, password) => {
+  return service({
+    url: '/api/v1/auth/sign_up',
+    data: {
+      username: username,
+      password: password
+    },
+    method: 'post'
+  })
+}
+
 authApi.refreshToken = refreshToken => {
   return service({
     url: '/oauth/token',
