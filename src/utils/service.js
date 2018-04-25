@@ -40,9 +40,9 @@ service.interceptors.request.use(
  */
 service.interceptors.response.use(
   response => {
-    // clear global error
-    console.log('clear error')
+    // clear global error and info
     store.commit(type.ERROR_OCCURRED, null)
+    store.commit(type.CLEAR_GLOBAL_INFO)
     NProgress.done()
     return response
   },

@@ -31,6 +31,13 @@ authApi.signUp = (username, password) => {
   })
 }
 
+authApi.logout = () => {
+  return service({
+    url: '/logout',
+    method: 'post'
+  })
+}
+
 authApi.refreshToken = refreshToken => {
   return service({
     url: '/oauth/token',

@@ -24,8 +24,8 @@
             <ul class="menu" v-else>
               <li>
                 <a class="headmenu align-center">{{user.username}}</a>
-                <a class="submenu">个人中心</a>
-                <a class="submenu">注销</a>
+                <a class="submenu" @click="handleCenterClick">个人中心</a>
+                <a class="submenu" @click="handleSignOutClick">注销</a>
               </li>
             </ul>
           </li>
@@ -51,6 +51,7 @@
 <script>
 import * as type from '../../store/mutation-type'
 import Auth from '../auth/Auth'
+import authApi from '@/apis/auth'
 import { mapMutations, mapGetters } from 'vuex'
 export default {
   components: {
@@ -64,10 +65,26 @@ export default {
   },
   methods: {
     ...mapMutations({
-      togleAuthShow: type.TOGLE_AUTH_PAGE
+      togleAuthShow: type.TOGLE_AUTH_PAGE,
+      setGlobalInfo: type.SET_GLOBAL_INFO,
+      clearToken: type.CLEAR_TOKEN
     }),
     handleSignInClick() {
       this.togleAuthShow()
+    },
+    handleCenterClick() {
+      console.log('personal center click')
+    },
+    handleSignOutClick() {
+      console.log('logout...')
+      authApi.logout().then(response => {
+        if (response) {
+          if (response.status === 200) {
+            this.clearToken()
+            this.setGlobalInfo('登出成功!')
+          }
+        }
+      })
     }
   }
 }

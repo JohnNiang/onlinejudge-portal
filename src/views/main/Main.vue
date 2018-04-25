@@ -2,6 +2,7 @@
   <div>
     <my-header></my-header>
     <error-alert></error-alert>
+    <alert v-if="globalInfo" type="success" :desc="globalInfo"></alert>
     <transition name="fade" mode="out-in" appear>
       <router-view></router-view>
     </transition>
@@ -13,12 +14,16 @@
 import MyHeader from '@/views/header/Header'
 import MyFooter from '@/views/footer/Footer'
 import ErrorAlert from '@/views/error/ErrorAlert'
+import { mapGetters } from '../../../../onlinejudge-manager/node_modules/vuex'
 
 export default {
   components: {
     MyHeader,
     MyFooter,
     ErrorAlert
+  },
+  computed: {
+    ...mapGetters(['globalInfo'])
   },
   name: 'Main'
 }
