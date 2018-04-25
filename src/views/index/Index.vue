@@ -1,56 +1,52 @@
 <template>
   <div>
     <header>
-      <h1 class="title">Chang OJ</h1>
-      <h2 class="subtitle">An Online Judge for CQJTU</h2>
-      <p class="disclaimer">A powerful judge backend and more problems.</p>
+      <h1 class="title">CJ OJ</h1>
+      <h2 class="subtitle">革新的在线评判平台</h2>
+      <p class="disclaimer">来自重庆交通大学</p>
       <router-link to="/problems" tag="button" class="get-started button button-primary button-large">Go to practice</router-link>
       <a class="scroll-down" v-scroll-to="'#intro'"></a>
     </header>
     <section class="section-tertiary" id="intro">
-      <div class="row">
-        <div class="col col-md-6 col-xlg-3 align-center">
-          <strong class="h4">Hello World</strong>
-        </div>
-        <div class="col col-md-6 col-xlg-3 align-center">
-          <strong class="h4">Hello World</strong>
-        </div>
-        <div class="col col-md-6 col-xlg-3 align-center">
-          <strong class="h4">Hello World</strong>
-        </div>
-        <div class="col col-md-6 col-xlg-3 align-center">
-          <strong class="h4">Hello World</strong>
+      <div class="container">
+        <div class="row">
+          <div class="col col-md-6 col-xlg-6 align-center">
+            <div class="panel">
+              <div class="panel-head">
+                <h2 class="panel-title">Judge Now!</h2>
+              </div>
+
+              <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, iure nihil nisi repellendus doloremque harum quis dolor doloribus repudiandae eum repellat, maiores quas! Autem beatae, eos et neque minus ut mollitia ad earum, rerum hic dignissimos doloremque repellendus? Iste odit minus, recusandae tenetur, magni ullam nostrum explicabo. Explicabo, similique, tenetur.</p>
+              </div>
+
+              <div class="panel-footer">
+                <button class="button-primary-text">join us</button>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-6 col-xlg-6 align-center">
+            <div class="panel">
+              <div class="panel-head">
+                <h2 class="panel-title">Judge Now!</h2>
+              </div>
+
+              <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, iure nihil nisi repellendus doloremque harum quis dolor doloribus repudiandae eum repellat, maiores quas! Autem beatae, eos et neque minus ut mollitia ad earum, rerum hic dignissimos doloremque repellendus? Iste odit minus, recusandae tenetur, magni ullam nostrum explicabo. Explicabo, similique, tenetur.</p>
+              </div>
+
+              <div class="panel-footer">
+                <button class="button-primary-text">join us</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <section class="section-tertiary">
-      <div class="container container-small">
-        <div class="panel">
-          <div class="panel-head">
-            <h2 class="panel-title">Judge Now!</h2>
-          </div>
 
-          <div class="panel-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, iure nihil nisi repellendus doloremque harum quis dolor doloribus repudiandae eum repellat, maiores quas! Autem beatae, eos et neque minus ut mollitia ad earum, rerum hic dignissimos doloremque repellendus? Iste odit minus, recusandae tenetur, magni ullam nostrum explicabo. Explicabo, similique, tenetur.</p>
-          </div>
-
-          <div class="panel-footer">
-            <button class="button-primary-text">join us</button>
-          </div>
-        </div>
-      </div>
     </section>
     <section>
       <div class="container container-small">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+        <p>极客挚爱的高质量在线技术平台，想要学习和提升专业能力从这里开始，充足技术干货等你来啃，轻松拿下 Dream Offer！</p>
       </div>
     </section>
   </div>
