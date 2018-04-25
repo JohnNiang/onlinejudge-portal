@@ -9,16 +9,19 @@
             </h1>
           </div>
           <div class="time align-center">
-            <span>
+            <span class="tooltip">
               <font-awesome-icon :icon="['fas', 'clock']" /> {{problem.updateTime | timeAgo}} ago
+              <span class="tooltip-text">更新日期</span>
             </span>
           </div>
           <div class="limit align-right">
-            <span>
+            <span class="tooltip">
               <font-awesome-icon :icon="['fas', 'stopwatch']" /> {{problem.timeLimit | toThousands}} ms
+              <span class="tooltip-text">时间限制</span>
             </span>
-            <span>
+            <span class="tooltip">
               <font-awesome-icon :icon="['fas', 'hdd']" /> {{problem.memoryLimit | toThousands}} KB
+              <span class="tooltip-text">内存限制</span>
             </span>
           </div>
           <div class="description">
@@ -91,6 +94,7 @@ import 'codemirror/lib/codemirror.css'
 
 // require active-line.js
 import 'codemirror/addon/selection/active-line.js'
+import 'codemirror/mode/clike/clike.js'
 
 // require theme
 // import 'codemirror/theme/paraiso-light.css'
@@ -118,7 +122,7 @@ export default {
       },
       cmOptions: {
         tabSize: 4,
-        mode: 'text/javascript',
+        mode: 'text/x-java',
         styleActiveLine: true,
         // theme: 'paraiso-light',
         lineNumbers: true,
@@ -144,7 +148,7 @@ export default {
       return this.error != null && this.error !== ''
     }
   },
-  mounted() {
+  created() {
     this.getProblem()
   },
   methods: {
