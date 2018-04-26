@@ -2,7 +2,9 @@
   <div>
     <my-header></my-header>
     <error-alert></error-alert>
-    <alert v-if="globalInfo" type="success" :desc="globalInfo"></alert>
+    <div class="container" v-if="globalInfo">
+      <alert type="success" :desc="globalInfo"></alert>
+    </div>
     <transition name="fade" mode="out-in" appear>
       <router-view></router-view>
     </transition>

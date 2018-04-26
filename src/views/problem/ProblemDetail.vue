@@ -39,7 +39,7 @@
                 {{language.name}}
               </option>
             </select>
-            <alert v-if="languageNotAvailable" type="warning" desc="The problem does not support any language, please wait for some time"></alert>
+            <alert v-if="languageNotAvailable" type="warning" desc="当前题目未能支持任何评判语言，请等待下一次更新"></alert>
           </div>
           <div class="codemirror">
             <label>
@@ -67,7 +67,7 @@
             <font-awesome-icon :icon="['fas', 'sync']" /> 刷新
           </button>
           <div v-if="!isLogined">
-            <alert type="warning" desc="You are not signed in. So you can't check this problem submission"></alert>
+            <alert type="warning" desc="您还未登录，所以不能查看提交记录"></alert>
           </div>
           <div class="submissions" v-else>
             <submission :submissions="submissions"></submission>
@@ -254,5 +254,9 @@ export default {
 .codemirror {
   text-align-last: left;
   margin-top: 10px;
+}
+
+.card {
+  overflow: unset;
 }
 </style>

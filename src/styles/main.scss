@@ -42,6 +42,14 @@ nav,
   }
 }
 
+.tooltip-text {
+  position: absolute;
+  visibility: hidden;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
 .menu {
   cursor: pointer;
   width: 150px;
