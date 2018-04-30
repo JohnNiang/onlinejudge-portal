@@ -5,13 +5,13 @@
       <h3>Drop files to upload</h3>
     </div>
     <div class="avatar-upload" v-show="!edit">
-      <div class="text-center p-2">
+      <div class="align-center p-2">
         <label for="avatar">
           <img :src="files.length ? files[0].url : 'https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm'" class="rounded-circle" />
           <h4 class="pt-2">or<br/>Drop files anywhere to upload</h4>
         </label>
       </div>
-      <div class="text-center p-2">
+      <div class="align-center p-2">
         <file-upload extensions="gif,jpg,jpeg,png,webp" accept="image/png,image/gif,image/jpeg,image/webp" name="avatar" class="btn btn-primary" post-action="/upload/post" :drop="!edit" v-model="files" @input-filter="inputFilter" @input-file="inputFile" ref="upload">
           Upload avatar
         </file-upload>
@@ -22,14 +22,10 @@
       <div class="avatar-edit-image" v-if="files.length">
         <img ref="editImage" :src="files[0].url" />
       </div>
-      <div class="text-center p-4">
+      <div class="align-center p-4">
         <button type="button" class="btn btn-secondary" @click.prevent="$refs.upload.clear">Cancel</button>
         <button type="submit" class="btn btn-primary" @click.prevent="editSave">Save</button>
       </div>
-    </div>
-    <div class="pt-5">
-      Source code:
-      <a href="https://github.com/lian-yue/vue-upload-component/blob/master/docs/views/examples/Avatar.vue">/docs/views/examples/Avatar.vue</a>
     </div>
   </div>
 </template>
@@ -123,13 +119,12 @@ export default {
 }
 </script>
 
-
 <style>
 .example-avatar .avatar-upload .rounded-circle {
   width: 200px;
   height: 200px;
 }
-.example-avatar .text-center .btn {
+.example-avatar .align-center .btn {
   margin: 0 0.5rem;
 }
 .example-avatar .avatar-edit-image {

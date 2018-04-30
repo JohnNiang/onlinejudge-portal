@@ -28,6 +28,7 @@
         <input v-model="userDetail.username" :disabled="disabled" type="text" placeholder="Enter some info">
       </div>
       <div class="form-control">
+        <avatar></avatar>
         <input ref="inputFile" :disabled="disabled" type="file" name="image" id="image_file" class="input_file">
         <label for="input_file" @click="handleInputFileLabelClick">
           <font-awesome-icon :icon="['fas', 'cloud-upload-alt']"></font-awesome-icon>
