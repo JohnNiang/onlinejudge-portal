@@ -74,6 +74,9 @@ export default {
     },
     handleCenterClick() {
       console.log('personal center click')
+      this.$router.push({
+        name: 'user_center'
+      })
     },
     handleSignOutClick() {
       console.log('logout...')

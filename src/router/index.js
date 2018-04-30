@@ -10,6 +10,8 @@ const About = resolve => require(['@/views/about/About'], resolve)
 const Contest = resolve => require(['@/views/contest/Contest'], resolve)
 const ContestDetail = resolve =>
   require(['@/views/contest/ContestDetail'], resolve)
+const User = resolve => require(['@/views/user/User'], resolve)
+const UserCenter = resolve => require(['@/views/user/UserCenter'], resolve)
 
 Vue.use(Router)
 
@@ -51,6 +53,18 @@ export default new Router({
           name: 'contest_detail',
           component: ContestDetail,
           props: true
+        },
+        {
+          path: 'users',
+          component: User,
+          redirect: 'center',
+          children: [
+            {
+              path: 'center',
+              name: 'user_center',
+              component: UserCenter
+            }
+          ]
         }
       ]
     }
