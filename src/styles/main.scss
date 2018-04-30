@@ -50,24 +50,6 @@ nav,
   visibility: visible;
 }
 
-.menu {
-  cursor: pointer;
-  width: 150px;
-  background: inherit;
-  position: relative;
-  z-index: 10;
-  .submenu {
-    display: none;
-    margin-top: 5px;
-    background: white;
-  }
-  &:hover {
-    .submenu {
-      display: block;
-    }
-  }
-}
-
 .duration-3 {
   @include duration(3s);
 }

@@ -91,7 +91,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/base/variable';
+
 .router-link-active {
   border-bottom: 4px solid #4caf50;
+}
+
+.menu {
+  margin-bottom: 0;
+  height: 100%;
+  cursor: pointer;
+  width: 130px;
+  background: inherit;
+  // top: 10px;
+  // position: relative;
+  z-index: 999;
+  li {
+    a {
+      display: inline-flex;
+    }
+  }
+  .submenu {
+    display: none;
+    margin-top: 1px;
+    height: 45px;
+    color: white;
+    background: $header-background-color;
+  }
+  &:hover {
+    .submenu {
+      display: block;
+    }
+  }
 }
 </style>
