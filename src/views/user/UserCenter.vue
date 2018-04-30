@@ -38,7 +38,7 @@
       <legend>extra</legend>
       <div class="form-control">
         <label>intro</label>
-        <textarea :disabled="disabled" placeholder="Enter some text..."></textarea>
+        <textarea :disabled="disabled" placeholder="Enter your introduction..."></textarea>
       </div>
       <div class="form-control">
         <label>favourite language</label>
@@ -58,7 +58,7 @@
       </div>
     </fieldset>
     <div class="card-actions">
-      <button class="button-primary button-long" @click="handleModifyClick">Modify</button>
+      <button class="button-primary button-long" @click="handleModifyClick">{{modifyText}}</button>
     </div>
   </div>
 </template>
@@ -87,6 +87,9 @@ export default {
     ...mapGetters(['user']),
     disabled() {
       return !this.isEditing
+    },
+    modifyText() {
+      return this.isEditing ? 'Update' : 'Open update'
     }
   },
   methods: {
