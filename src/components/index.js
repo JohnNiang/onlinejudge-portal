@@ -1,9 +1,11 @@
 import Vue from 'vue'
 
 import Alert from './alert/Alert'
+import Avatar from './avatar/avatar'
 
 const _components = {
-  Alert
+  Alert,
+  Avatar
 }
 
 const components = {}
