@@ -7,12 +7,12 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>submitted</th>
-          <th>status</th>
-          <th>code size</th>
-          <th>result</th>
-          <th>score</th>
-          <th>action</th>
+          <th>提交时间</th>
+          <th>状态</th>
+          <th>代码长度</th>
+          <th>结果</th>
+          <th>分数</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>

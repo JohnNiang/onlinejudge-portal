@@ -1,48 +1,48 @@
 <template>
   <div class="card">
-    <h3 class="card-title">Detail</h3>
+    <h3 class="card-title">用户详情</h3>
     <fieldset v-if="userDetail">
-      <legend>basic</legend>
+      <legend>基础信息</legend>
       <div class="form-control-group">
         <div class="form-control">
-          <label>Create time</label>
+          <label>创建时间</label>
           <div>
-            <span>{{userDetail.createTime | timeAgo}} ago</span>
+            <span>{{userDetail.createTime | timeAgo}} 前</span>
           </div>
         </div>
         <div class="form-control">
-          <label>update time</label>
+          <label>更新时间</label>
           <div>
-            <span>{{userDetail.updateTime | timeAgo}} ago</span>
+            <span>{{userDetail.updateTime | timeAgo}} 前</span>
           </div>
         </div>
         <div class="form-control">
-          <label>user type</label>
+          <label>用户类型</label>
           <div>
             <span>{{userDetail.userType}}</span>
           </div>
         </div>
       </div>
       <div class="form-control">
-        <label>User name</label>
-        <input v-model="userDetail.username" :disabled="disabled" type="text" placeholder="Enter some info">
+        <label>用户名</label>
+        <input v-model="userDetail.username" :disabled="disabled" type="text" placeholder="请输入用户名">
       </div>
       <div class="form-control">
         <avatar></avatar>
         <input ref="inputFile" :disabled="disabled" type="file" name="image" id="image_file" class="input_file">
         <label for="input_file" @click="handleInputFileLabelClick">
           <font-awesome-icon :icon="['fas', 'cloud-upload-alt']"></font-awesome-icon>
-          Avatar</label>
+          头像</label>
       </div>
     </fieldset>
     <fieldset>
-      <legend>extra</legend>
+      <legend>额外信息</legend>
       <div class="form-control">
-        <label>intro</label>
-        <textarea :disabled="disabled" placeholder="Enter your introduction..."></textarea>
+        <label>介绍</label>
+        <textarea :disabled="disabled" placeholder="请输入您的自我介绍"></textarea>
       </div>
       <div class="form-control">
-        <label>favourite language</label>
+        <label>偏好语言</label>
         <select :disabled="disabled" v-model="userDetail.extra.languageId">
           <option v-for="(language, index) in languages" :key="index" :value="language.languageId">
             {{language.name}}
@@ -50,12 +50,12 @@
         </select>
       </div>
       <div class="form-control">
-        <label>student number</label>
-        <input :disabled="disabled" type="text" v-model="userDetail.extra.stuNum" />
+        <label>学生学号</label>
+        <input :disabled="disabled" placeholder="如果您有学号，请填写真实学号" type="text" v-model="userDetail.extra.stuNum" />
       </div>
       <div class="form-control">
-        <label>student name</label>
-        <input :disabled="disabled" type="text" v-model="userDetail.extra.stuName" />
+        <label>学生姓名</label>
+        <input :disabled="disabled" placeholder="如果您已经填写了学号，请填写真实的姓名" type="text" v-model="userDetail.extra.stuName" />
       </div>
     </fieldset>
     <div class="card-actions">
@@ -90,7 +90,7 @@ export default {
       return !this.isEditing
     },
     modifyText() {
-      return this.isEditing ? 'Update' : 'Open update'
+      return this.isEditing ? '更新' : '打开编辑'
     }
   },
   methods: {

@@ -22,7 +22,7 @@
           <li>
             <a v-if="!isLogined" @click="handleSignInClick" style="cursor: pointer">登录</a>
             <ul class="menu" v-else>
-              <li>
+              <li v-if="user">
                 <a class="headmenu align-center">{{user.username}}</a>
                 <a class="submenu" @click="handleCenterClick">个人中心</a>
                 <a class="submenu" @click="handleSignOutClick">注销</a>

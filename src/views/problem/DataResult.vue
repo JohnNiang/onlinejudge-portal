@@ -51,8 +51,8 @@ export default {
     },
     resultText() {
       return this.results
-        ? this.results.length > 0 ? 'Results' : 'No Results'
-        : 'Hover me'
+        ? this.results.length > 0 ? '查看结果' : '没有结果'
+        : '查看结果'
     },
     tagType() {
       let color = 'red'

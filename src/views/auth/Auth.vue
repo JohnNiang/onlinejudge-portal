@@ -29,7 +29,7 @@
 import * as type from '../../store/mutation-type'
 import authApi from '@/apis/auth'
 import Modal from '@/components/modal/Modal'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -47,6 +47,7 @@ export default {
     ...mapGetters(['isAuthShow'])
   },
   methods: {
+    ...mapActions(['refreshUserDetail']),
     ...mapMutations({
       togleAuthShow: type.TOGLE_AUTH_PAGE,
       setToken: type.SET_TOKEN
@@ -63,6 +64,7 @@ export default {
         if (response) {
           if (response.status === 200) {
             this.setToken(response.data)
+            this.refreshUserDetail()
             this.togleAuthShow()
           } else {
             this.error = 'username or password may be not correct'
@@ -87,5 +89,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

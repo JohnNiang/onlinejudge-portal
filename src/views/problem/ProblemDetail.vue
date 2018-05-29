@@ -61,7 +61,7 @@
         </div>
         <div class="card">
           <div class="card_title">
-            <h5 class="align-center">提交</h5>
+            <h5 class="align-center">提交记录</h5>
           </div>
           <button class="button-primary-text button-small" @click="handleRefreshClick">
             <font-awesome-icon :icon="['fas', 'sync']" /> 刷新

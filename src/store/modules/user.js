@@ -1,10 +1,12 @@
 import * as type from '../mutation-type'
 import authApi from '../../apis/auth'
+import userApi from '../../apis/user'
 
 const AUTH_RESULT = 'authResult'
 
 const state = {
   authResult: JSON.parse(localStorage.getItem(AUTH_RESULT)),
+  user: undefined,
   globalError: undefined
 }
 
@@ -14,7 +16,8 @@ const getters = {
   tokenType: state => (state.authResult ? state.authResult.token_type : null),
   refreshToken: state =>
     state.authResult ? state.authResult.refresh_token : null,
-  user: state => (state.authResult ? state.authResult.user : null),
+  user: state => state.user,
+  userId: state => (state.authResult ? state.authResult.user_id : null),
   globalError: state => state.globalError,
   isLogined: state =>
     state.authResult &&
@@ -34,6 +37,14 @@ const mutations = {
   [type.CLEAR_TOKEN](state) {
     localStorage.removeItem(AUTH_RESULT)
     state.authResult = null
+  },
+  [type.SET_USRE_DETAIL](state, user) {
+    state.user = user
+  },
+  [type.SET_USER_EXTRA_DETAIL](state, userExtra) {
+    if (state.user) {
+      state.user.extra = userExtra
+    }
   }
 }
 
@@ -48,6 +59,30 @@ const actions = {
           'Login failed, username or password was not available'
         )
         console.error(`login error, response: ${response}`)
+      }
+    })
+  },
+  refreshUserDetail({ commit }) {
+    userApi.getDetail().then(response => {
+      if (response && response.status === 200) {
+        commit(type.SET_USRE_DETAIL, response.data)
+      } else {
+        commit(type.ERROR_OCCURRED, 'Error occurred when getting user detail')
+      }
+    })
+  },
+  refreshUserExtraDetail({ commit, state }) {
+    if (!state.user) {
+      return
+    }
+    userApi.getExtraDetail().then(response => {
+      if (response && response.status === 200) {
+        commit(type.SET_USER_EXTRA_DETAIL, response.data)
+      } else {
+        commit(
+          type.ERROR_OCCURRED,
+          'Error occurred when getting user extra detail'
+        )
       }
     })
   }
