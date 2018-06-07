@@ -58,6 +58,7 @@ const actions = {
           type.ERROR_OCCURRED,
           'Login failed, username or password was not available'
         )
+        commit(type.CLEAR_TOKEN)
         console.error(`login error, response: ${response}`)
       }
     })
