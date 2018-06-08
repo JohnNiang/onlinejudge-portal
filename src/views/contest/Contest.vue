@@ -5,23 +5,35 @@
         <ul class="responsive-table">
           <li class="table-header">
             <div class="col col-1">#</div>
-            <div class="col col-2">title</div>
-            <div class="col col-3">type</div>
-            <div class="col col-4">started</div>
-            <div class="col col-5">ended</div>
-            <div class="col col-6">created</div>
-            <div class="col col-7">updated</div>
-            <div class="col col-8">status</div>
+            <div class="col col-2">标题</div>
+            <div class="col col-3">类型</div>
+            <div class="col col-4">开始时间</div>
+            <div class="col col-5">结束时间</div>
+            <div class="col col-6">创建时间</div>
+            <div class="col col-7">更新时间</div>
+            <div class="col col-8">状态</div>
           </li>
-          <li class="table-row" v-for="contest in contests" :key="contest.contestId" @click="readMore(contest.contestId)">
+          <li class="table-row" v-for="contest in contestForShow" :key="contest.contestId" @click="readMore(contest.contestId)">
             <div class="col col-1" data-label="#">{{contest.contestId}}</div>
-            <div class="col col-2" data-label="title">{{contest.title}}</div>
-            <div class="col col-3" data-label="type">{{contest.type}}</div>
-            <div class="col col-4" data-label="started">{{contest.startTime | parseTime}}</div>
-            <div class="col col-5" data-label="ended">{{contest.endTime | parseTime}}</div>
-            <div class="col col-6" data-label="created">{{contest.createTime | timeAgo}}</div>
-            <div class="col col-7" data-label="updated">{{contest.updateTime | timeAgo}}</div>
-            <div class="col col-8" data-label="status">{{contest.status}}</div>
+            <div class="col col-2" data-label="标题">{{contest.title}}</div>
+            <div class="col col-3 tags" data-label="类型">
+              <span class="tag tag-rounded" :class="contest.typeTagColor">
+                {{contest.typeLabel}}
+              </span>
+            </div>
+            <div class="col col-4" data-label="开始时间">
+              <font-awesome-icon :icon="['far', 'clock']" /> {{contest.startTime | parseTime}}
+            </div>
+            <div class="col col-5" data-label="结束时间">
+              <font-awesome-icon :icon="['fas', 'clock']" /> {{contest.endTime | parseTime}}
+            </div>
+            <div class="col col-6" data-label="创建时间">{{contest.createTime | timeAgo}} 前</div>
+            <div class="col col-7" data-label="更新时间">{{contest.updateTime | timeAgo}} 前</div>
+            <div class="col col-8 tags" data-label="状态">
+              <span class="tag tag-rounded" :class="contest.statusTagColor">
+                {{contest.statusLabel}}
+              </span>
+            </div>
           </li>
         </ul>
         <my-pagination :total="pagination.total" :page="pagination.page" :rpp="pagination.rpp" @size-change="handleSizeChange" @current-change="handleCurrentPageChange"></my-pagination>
@@ -33,6 +45,7 @@
 <script>
 import MyPagination from '@/components/pagination/MyPagination'
 import * as contestApi from '@/apis/contest'
+import constant from '@/utils/constant'
 
 export default {
   components: {
@@ -47,6 +60,20 @@ export default {
         total: 0
       },
       contests: []
+    }
+  },
+  computed: {
+    contestForShow() {
+      return this.contests.map(contest => {
+        const contestType = constant.contestType[contest.type]
+        contest.typeLabel = contestType.value
+        contest.typeTagColor = contestType.tagColor
+
+        const contestStatus = constant.contestStatus[contest.status]
+        contest.statusLabel = contestStatus.value
+        contest.statusTagColor = contestStatus.tagColor
+        return contest
+      })
     }
   },
   mounted() {
@@ -96,6 +123,7 @@ export default {
   }
   .table-header {
     background-color: #95a5a6;
+    color: #5f5959;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -133,8 +161,6 @@ export default {
   @media all and (max-width: 767px) {
     .table-header {
       display: none;
-    }
-    .table-row {
     }
     li {
       display: block;

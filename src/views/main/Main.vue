@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <my-header></my-header>
     <error-alert></error-alert>
     <div class="container" v-if="globalInfo">
@@ -39,5 +39,11 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 </style>

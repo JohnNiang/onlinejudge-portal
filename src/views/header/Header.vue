@@ -52,13 +52,16 @@
 import * as type from '../../store/mutation-type'
 import Auth from '../auth/Auth'
 import authApi from '@/apis/auth'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 export default {
   components: {
     Auth
   },
   data() {
     return {}
+  },
+  created() {
+    this.refreshUserDetail()
   },
   computed: {
     ...mapGetters(['isLogined', 'user'])
@@ -69,6 +72,7 @@ export default {
       setGlobalInfo: type.SET_GLOBAL_INFO,
       clearToken: type.CLEAR_TOKEN
     }),
+    ...mapActions(['refreshUserDetail']),
     handleSignInClick() {
       this.togleAuthShow()
     },
@@ -108,7 +112,6 @@ export default {
   background: inherit;
   // top: 10px;
   // position: relative;
-  z-index: 999;
   li {
     a {
       display: inline-flex;
