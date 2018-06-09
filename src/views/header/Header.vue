@@ -61,7 +61,9 @@ export default {
     return {}
   },
   created() {
-    this.refreshUserDetail()
+    if (this.isLogined) {
+      this.refreshUserDetail()
+    }
   },
   computed: {
     ...mapGetters(['isLogined', 'user'])
