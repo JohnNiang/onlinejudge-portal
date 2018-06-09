@@ -259,4 +259,8 @@ export default {
 .card {
   overflow: unset;
 }
+
+.card-actions {
+  justify-content: center;
+}
 </style>

@@ -55,7 +55,6 @@ footer {
   // justify-content: center;
   text-align: center;
   padding: 20px 0;
-  flex: 0 0 50px;
   margin-top: auto;
   span {
     position: relative;
