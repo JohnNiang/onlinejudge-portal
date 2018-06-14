@@ -59,6 +59,14 @@ export default {}
 <style lang="scss" scoped>
 header {
   height: calc(100vh - 60px);
+  background-image: url('../../assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  > * {
+    color: black;
+  }
 }
 .scroll-down {
   cursor: pointer;

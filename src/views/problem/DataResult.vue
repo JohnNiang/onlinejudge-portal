@@ -16,11 +16,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(dataResult, index) in results" :key="index">
+            <tr v-for="(dataResult, index) in resultsForShow" :key="index">
               <td>{{index+1}}</td>
               <td>{{dataResult.usedTime}}</td>
               <td>{{dataResult.usedMemory}}</td>
-              <td>{{dataResult.result}}</td>
+              <td class="tags">
+                <span class="tag tag-rounded" :class="dataResult.resultTagColor">
+                  {{dataResult.resultValue}}
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -31,6 +35,7 @@
 
 <script>
 import submissionApi from '@/apis/submission'
+import constant from '@/utils/constant'
 
 export default {
   props: {
@@ -46,6 +51,17 @@ export default {
     }
   },
   computed: {
+    resultsForShow() {
+      if (!this.results) {
+        return null
+      }
+      return this.results.map(dataResult => {
+        const result = constant.judgeResult[dataResult.result]
+        dataResult.resultValue = result.value
+        dataResult.resultTagColor = result.tagColor
+        return dataResult
+      })
+    },
     isDisabled() {
       return this.submission.result !== 'AC'
     },
@@ -86,5 +102,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.tags {
+  white-space: nowrap;
+  .tag {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
 </style>

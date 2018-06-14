@@ -19,11 +19,9 @@ service.interceptors.request.use(
     if (accessToken) {
       // if logined
       console.log('config authentication header')
-      config.headers['Authorization'] = `${store.getters.tokenType} ${
-        store.getters.accessToken
-      }`
+      config.headers['Authorization'] = `${store.getters.tokenType} ${store.getters.accessToken}`
     }
-    // there must not include `else` clause
+    // there must not include 'else' clause
     NProgress.start()
     return config
   },

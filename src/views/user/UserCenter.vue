@@ -19,7 +19,7 @@
         <div class="form-control">
           <label>用户类型</label>
           <div>
-            <span>{{userDetail.userType}}</span>
+            <span>{{userDetail.userTypeValue}}</span>
           </div>
         </div>
       </div>
@@ -28,14 +28,14 @@
         <input v-model="userDetail.username" :disabled="disabled" type="text" placeholder="请输入用户名">
       </div>
       <div class="form-control">
-        <avatar></avatar>
-        <input ref="inputFile" :disabled="disabled" type="file" name="image" id="image_file" class="input_file">
         <label for="input_file" @click="handleInputFileLabelClick">
           <font-awesome-icon :icon="['fas', 'cloud-upload-alt']"></font-awesome-icon>
-          头像</label>
+          头像
+        </label>
+        <img v-if="userDetail.avatar" :src="userDetail.avatar" alt="user avatar">
       </div>
     </fieldset>
-    <fieldset>
+    <fieldset v-if="userDetail.extra">
       <legend>额外信息</legend>
       <div class="form-control">
         <label>介绍</label>
@@ -67,22 +67,16 @@
 <script>
 import { mapGetters } from 'vuex'
 import languageApi from '@/apis/language'
+import constant from '@/utils/constant'
 
 export default {
   data() {
     return {
       isEditing: false,
       userDetail: null,
+      userExtra: null,
       languages: []
     }
-  },
-  created() {
-    // copy the user info
-    this.userDetail = Object.assign({}, this.user)
-    if (!this.userDetail.extra) {
-      this.userDetail.extra = {}
-    }
-    this.getLanguages()
   },
   computed: {
     ...mapGetters(['user']),
@@ -92,6 +86,20 @@ export default {
     modifyText() {
       return this.isEditing ? '更新' : '打开编辑'
     }
+  },
+  created() {
+    console.log('user', this.$store.user)
+    // copy the user info
+    this.userDetail = Object.assign({}, this.user)
+    console.log('user detail', this.userDetail)
+    if (this.userDetail && this.userDetail.userType) {
+      this.userDetail.userTypeValue =
+        constant.userType[this.userDetail.userType].value
+    }
+    if (this.userDetail && !this.userDetail.extra) {
+      this.userDetail.extra = {}
+    }
+    this.getLanguages()
   },
   methods: {
     handleInputFileLabelClick() {

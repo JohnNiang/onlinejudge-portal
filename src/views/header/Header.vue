@@ -21,13 +21,20 @@
           </li>
           <li>
             <a v-if="!isLogined" @click="handleSignInClick" style="cursor: pointer">登录</a>
-            <ul class="menu" v-else>
-              <li v-if="user">
-                <a class="headmenu align-center">{{user.username}}</a>
-                <a class="submenu" @click="handleCenterClick">个人中心</a>
-                <a class="submenu" @click="handleSignOutClick">注销</a>
-              </li>
-            </ul>
+            <div v-else>
+              <div v-if="user" class="dropdown">
+                <div class="drop-btn">
+                  <div class="avatar-wrapper" v-if="user.avatar">
+                    <img class="avatar" :src="user.avatar" alt="user avatar">
+                  </div>
+                  <font-awesome-icon v-else :icon="['far', 'user']" /> {{user.username}}
+                </div>
+                <div class="dropdown-content">
+                  <a @click="handleCenterClick">个人中心</a>
+                  <a @click="handleSignOutClick">注销</a>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
         <a class="mobile-menu-toggle"></a>
@@ -90,7 +97,7 @@ export default {
         if (response) {
           if (response.status === 200) {
             this.clearToken()
-            this.setGlobalInfo('登出成功!')
+            this.$router.push({ name: 'home' })
           }
         }
       })
@@ -106,29 +113,54 @@ export default {
   border-bottom: 4px solid #4caf50;
 }
 
-.menu {
-  margin-bottom: 0;
-  height: 100%;
+.avatar-wrapper {
+  display: inline-block;
+  img {
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 1.8em;
+    height: 1.8em;
+    position: relative;
+  }
+}
+
+.drop-btn {
+  background-color: #4caf50;
+  color: white;
+  min-width: 160px;
+  text-align: center;
+  padding: 17px;
+  font-size: 16px;
+  border: none;
   cursor: pointer;
-  width: 130px;
-  background: inherit;
-  // top: 10px;
-  // position: relative;
-  li {
-    a {
-      display: inline-flex;
-    }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  &:hover .dropdown-content {
+    display: block;
   }
-  .submenu {
-    display: none;
-    margin-top: 1px;
-    height: 45px;
-    color: white;
-    background: $header-background-color;
+  &:hover .drop-btn {
+    background-color: #3e8e41;
   }
-  &:hover {
-    .submenu {
-      display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    &:hover {
+      background-color: #f1f1f1;
     }
   }
 }
