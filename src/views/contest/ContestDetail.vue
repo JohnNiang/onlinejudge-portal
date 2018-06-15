@@ -38,6 +38,9 @@
             <button class="button-primary button-round button-shadow button-long">I want play</button>
           </div>
         </div>
+        <div v-else>
+          <alert type="warning" desc="该比赛已删除" :animated="false"></alert>
+        </div>
       </div>
     </section>
   </div>

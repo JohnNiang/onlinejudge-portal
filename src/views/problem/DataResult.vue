@@ -109,4 +109,8 @@ export default {
     -webkit-box-shadow: none;
   }
 }
+
+.tooltip-text {
+  z-index: 19999;
+}
 </style>

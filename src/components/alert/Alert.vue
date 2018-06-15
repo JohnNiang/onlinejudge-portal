@@ -18,12 +18,15 @@ export default {
     desc: {
       type: String,
       default: ''
+    },
+    animated: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
-      visiable: true,
-      animated: true
+      visiable: true
     }
   },
   computed: {

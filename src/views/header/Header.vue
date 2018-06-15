@@ -13,9 +13,9 @@
           <li>
             <router-link to="/contests" tag="a">比赛</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/ranklist" tag="a">排行榜</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/about" tag="a">关于</router-link>
           </li>
