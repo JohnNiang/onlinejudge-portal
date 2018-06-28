@@ -16,7 +16,7 @@
 import MyHeader from '@/views/header/Header'
 import MyFooter from '@/views/footer/Footer'
 import ErrorAlert from '@/views/error/ErrorAlert'
-import { mapGetters } from '../../../../onlinejudge-manager/node_modules/vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
